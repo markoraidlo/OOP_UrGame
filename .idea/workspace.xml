@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4486f0ce-7be2-4942-ad98-e4c87f2219cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mängulaud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mängulaud.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mängunupp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mängunupp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UurMäng.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UurMäng.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,7 +52,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Mängulaud.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="636">
               <caret line="45" column="120" selection-start-line="45" selection-start-column="120" selection-end-line="45" selection-end-column="120" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -88,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="945" />
     <option name="width" value="984" />
     <option name="height" value="1025" />
@@ -107,7 +104,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554051979781" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554054863752" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -169,7 +166,7 @@
       <option name="presentableId" value="Default" />
       <updated>1553972213064</updated>
       <workItem from="1553972217853" duration="2422000" />
-      <workItem from="1554014447360" duration="11753000" />
+      <workItem from="1554014447360" duration="12353000" />
     </task>
     <task id="LOCAL-00001" summary="Proovisin mängulaua teha, kuid veits kahtlen, kas seda saab edasi kasutada">
       <created>1554028053078</created>
@@ -206,14 +203,21 @@
       <option name="project" value="LOCAL" />
       <updated>1554051143603</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Mängulaua tegemine">
+      <created>1554052135330</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554052135330</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14175000" />
+    <option name="totallyTimeSpent" value="14775000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05910931" />
@@ -325,7 +329,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mängulaud.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="636">
           <caret line="45" column="120" selection-start-line="45" selection-start-column="120" selection-end-line="45" selection-end-column="120" />
           <folding>
             <element signature="imports" expanded="true" />
