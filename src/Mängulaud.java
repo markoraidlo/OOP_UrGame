@@ -14,14 +14,7 @@ Mängulaud teeb ka 6 mängunuppu arvutile ja mängijale.
         List<Integer> arvuti = new ArrayList<>();
         List<Integer> mängija = new ArrayList<>();
 
-        List<String> Mängulaua_esimene_rida = new ArrayList<>();
-        List<String> Mängulaua_teine_rida = new ArrayList<>();
-        List<String> Mängulaua_kolmas_rida = new ArrayList<>();
         List<String> terve_laud = new ArrayList<>();
-
-        Mängulaua_esimene_rida.addAll(Arrays.asList("[#]", "[ ]", "[ ]", "[ ]", "  ", "  ", "[#]", "[ ]"));
-        Mängulaua_teine_rida.addAll(Arrays.asList("[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"));
-        Mängulaua_kolmas_rida.addAll(Arrays.asList("[#]", "[ ]", "[ ]", "[ ]", "  ", "  ", "[#]", "[ ]"));
 
         terve_laud.addAll(Arrays.asList("[#]", "[ ]", "[ ]", "[ ]", "   ", "   ", "[#]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[#]", "[ ]", "[ ]", "[ ]", "   ", "   ", "[#]", "[ ]"));
 
