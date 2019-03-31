@@ -41,9 +41,9 @@ Mängulaud teeb ka 6 mängunuppu arvutile ja mängijale.
 
         for (int i=0; i < terve_laud.size(); i++ ) {
             if (mängija.get(i).equals(mängija.get(0))) {
-                System.out.println(terve_laud);
+                Algne_laud();
             }
-            if (mängija.contains(1)) {
+            if (mängija.contains(1)) { //kui on näiteks nupp 1, siis panna see asemele nii mängija listi, kui laua listi
                 mängija.set(i, 1);
                 terve_laud.set(19, "[1]");
             }
