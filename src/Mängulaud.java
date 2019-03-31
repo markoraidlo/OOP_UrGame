@@ -26,6 +26,7 @@ Mängulaud teeb ka 6 mängunuppu arvutile ja mängijale.
         Joonista(6, " ");
         Joonista(1, "[#]");
         Joonista(1, "[ ]");
+        System.out.println();
     }
 
     public static void main(String[] args) { //praegu tegin selle main'i siia, et näha lauda
