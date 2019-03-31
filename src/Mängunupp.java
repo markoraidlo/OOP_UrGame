@@ -8,7 +8,9 @@ public class Mängunupp {
         this.nupuNumber = nupuNumber;
     }
 
-
+    public int getNupuNumber() {
+        return nupuNumber;
+    }
 
     /*
     Meetodid nuppude liigutamiseks, nende liigutuste legaalsuse kontrollimiseks.

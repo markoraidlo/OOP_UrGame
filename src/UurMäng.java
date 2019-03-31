@@ -12,7 +12,6 @@ public class UurMäng {
         System.out.println("---------------------------");
         System.out.println("Arvuti algus: "); // + parasjagu nuppe
         System.out.println("Arvuti lõpp: ");
-        Mängulaud.Algne_laud();
         System.out.println("Mängija algus: "); // + parasjagu nuppe
         System.out.println("Mängija lõpp: ");
         System.out.println("---------------------------");
