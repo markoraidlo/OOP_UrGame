@@ -8,6 +8,14 @@ public class Mängunupp {
         this.nuppuNumber = nuppuNumber;
     }
 
+    public boolean isMängijaOma() {
+        return mängijaOma;
+    }
+
+    public int getNuppuNumber() {
+        return nuppuNumber;
+    }
+
     @Override
     public String toString() {
         if (mängijaOma) {

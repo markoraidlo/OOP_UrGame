@@ -68,6 +68,55 @@ public class Mängulaud {
         return 0;
     }
 
+    //Algne liigutamis meetod, vajab enen kontrolli läbimist. Tõenäoliselt on vaja paremaks teha.
+    public void liiguta(Mängunupp mängunupp, int silmadeArv) {
+        if (mängunupp.isMängijaOma()) {
+            if (mängijaAlgus.contains(mängunupp)) {
+                mängijaAlgus.remove(mängunupp);
+                mängijaTee.add(silmadeArv-1,mängunupp);
+            }
+            if (mängijaTee.contains(mängunupp))  {
+                int i = mängijaTee.indexOf(mängunupp);
+                mängijaTee.remove(mängunupp);
+                mängijaTee.add(i + silmadeArv, mängunupp);
+            }
+        }
+        else {
+            if (arvutiAlgus.contains(mängunupp)) {
+                arvutiAlgus.remove(mängunupp);
+                arvutiTee.add(silmadeArv - 1, mängunupp);
+            }
+            if (arvutiTee.contains(mängunupp))  {
+                int i = arvutiTee.indexOf(mängunupp);
+                arvutiTee.remove(mängunupp);
+                arvutiTee.add(i + silmadeArv, mängunupp);
+            }
+        }
+    }
+
+    // Selleks kui vastas nupp astub selle nuppu peale
+    public void liigutaAlgusesse(Mängunupp mängunupp) {
+        if (mängunupp.isMängijaOma()) {
+            mängijaTee.remove(mängunupp);
+            mängijaAlgus.add(mängunupp);
+        }
+        else {
+            arvutiTee.remove(mängunupp);
+            arvutiAlgus.add(mängunupp);
+        }
+    }
+
+    //Liigutab lõppu, enne peab kontrolli läbima.
+    public void liigutaLõppu(Mängunupp mängunupp) {
+        if (mängunupp.isMängijaOma()) {
+            mängijaTee.remove(mängunupp);
+            mängijaLõpp.add(mängunupp);
+        }
+        else {
+            arvutiTee.remove(mängunupp);
+            arvutiLõpp.add(mängunupp);
+        }
+    }
 
 
     /*
