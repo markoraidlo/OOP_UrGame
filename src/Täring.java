@@ -9,5 +9,4 @@ public class Täring {
         }
         return silmadeArv;
     }
-
 }

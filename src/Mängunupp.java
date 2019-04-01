@@ -25,8 +25,4 @@ public class Mängunupp {
             return "X";
         }
     }
-
-    /*
-    Meetodid nuppude liigutamiseks, nende liigutuste legaalsuse kontrollimiseks.
-    */
 }
