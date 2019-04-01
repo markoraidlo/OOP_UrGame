@@ -14,7 +14,17 @@ public class UurMäng {
         List<Mängunupp> lubatud = new ArrayList<>();
 
         // Mängu alguses väljastatav tekst.
-        System.out.println("Reeglid");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
+        System.out.println("Mängu reeglid:");
+        System.out.println("Mängu eesmärk on viia enda 6 nuppu esimesena mängu lõppu.");
+        System.out.println("Käigu alguses visatakse 4 täringut, mille igal on 50/50 võimalus tagastada 1 või 0");
+        System.out.println("Mängija valib nuppu mida soovib liigutada ning liigutab seda vastav arvu ruute(0-4)");
+        System.out.println("Kui mängija nuppule, mis asub mänguväljakul maandub peale vastase nupp, siis läheb nupp algusesse tagasi.");
+        System.out.println("Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonus");
+        System.out.println(",siis on see kaitsud vaenlase rünnakute eest.");
+        System.out.println("Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
+
 
         // Kasutaja loeb reeglid läbi ning siis alustab.
         Scanner scan = new Scanner(System.in);
@@ -27,7 +37,7 @@ public class UurMäng {
         // Boostile maandus, üldine kontroll.
         while (true) {
             //TimeUnit.SECONDS.sleep(5);
-            
+
             // Kontrollib kas mäng on läbi.
             if (mängulaud.võiduKontroll() != 0)
                 break;
