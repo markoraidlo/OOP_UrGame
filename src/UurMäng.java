@@ -1,12 +1,17 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class UurMäng {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //Objektide loomine.
         Täring täring = new Täring();
         Mängulaud mängulaud = new Mängulaud();
         Arvuti arvuti = new Arvuti();
+
+        List<Mängunupp> lubatud = new ArrayList<>();
 
         // Mängu alguses väljastatav tekst.
         System.out.println("Reeglid");
@@ -17,8 +22,12 @@ public class UurMäng {
         String enter = scan.next();
         mängulaud.väljastaLaud();
 
+
+
         // Boostile maandus, üldine kontroll.
         while (true) {
+            //TimeUnit.SECONDS.sleep(5);
+            
             // Kontrollib kas mäng on läbi.
             if (mängulaud.võiduKontroll() != 0)
                 break;
@@ -29,7 +38,8 @@ public class UurMäng {
             System.out.println("Täring veeretas: " + silmadeArv);
 
             //Testin kontrolli
-            System.out.println(mängulaud.kontroll(true, silmadeArv));
+            lubatud = mängulaud.kontroll(true, silmadeArv);
+            System.out.println(lubatud);
 
             System.out.println("Vali nupp mida liigutada: ");
             // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
@@ -40,20 +50,26 @@ public class UurMäng {
             // Uus mängu laua väljastus.
             mängulaud.väljastaLaud();
 
+
             //test
             mängulaud.liigutaAlgusesse(mängulaud.mängijaNuppud.get(0));
             //
+
 
             System.out.println("Arvuti käik.");
             silmadeArv = täring.veereta();
             System.out.println("Täring veeretas: " + silmadeArv);
 
+
+
             //Testin kontrolli
-            System.out.println(mängulaud.kontroll(false, silmadeArv));
+            lubatud = mängulaud.kontroll(false, silmadeArv);
+            System.out.println(lubatud);
 
             // Arvuti teeb oma asjad.
-            mängulaud.liiguta(mängulaud.arvutiNuppud.get(arvuti.suvalineKäik()), silmadeArv);
+            mängulaud.liiguta(arvuti.suvalineKäik(lubatud), silmadeArv);
             System.out.println("Arvuti tegi oma käigu");
+
             mängulaud.väljastaLaud();
 
             //Siit läheks loop algusesse tagasi
