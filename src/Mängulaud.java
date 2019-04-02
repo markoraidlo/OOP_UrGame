@@ -1,6 +1,16 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+/*
+TO DO list:
+Lõpeta kontrollimis meetod
+Meetod mis väljastaks normaalse laua
+Boonus kontroll
+Boonus ruudul uus täringu veeretus
+Täringu veeretus 0 erikord
+Ilustada koodi ning eemaldada asjad kus on mitu korda samat asja kasutatud.
+Uus skännerite süsteem
+ */
 
 public class Mängulaud {
     // Nuppude asukohtade jaoks erinvad listid
@@ -80,26 +90,45 @@ public class Mängulaud {
 
     //Algne liigutamis meetod, vajab enen kontrolli läbimist. Tõenäoliselt on vaja paremaks teha.
     public void liiguta(Mängunupp mängunupp, int silmadeArv) {
+        //Mängija nupp
         if (mängunupp.isMängijaOma()) {
+            // Algusest teepeale
             if (mängijaAlgus.contains(mängunupp)) {
                 mängijaAlgus.remove(mängunupp);
                 mängijaTee.set(silmadeArv-1,mängunupp);
             }
             else if (mängijaTee.contains(mängunupp))  {
-                int i = mängijaTee.indexOf(mängunupp);
-                mängijaTee.remove(mängunupp);
-                mängijaTee.set(i + silmadeArv, mängunupp);
+                // Teepealt lõppu
+                if (mängijaTee.indexOf(mängunupp) + silmadeArv == 14) {
+                    mängijaTee.set(mängijaTee.indexOf(mängunupp), null);
+                    mängijaLõpp.add(mängunupp);
+                }
+                // Teepeal edasi
+                else {
+                    int i = mängijaTee.indexOf(mängunupp);
+                    mängijaTee.remove(mängunupp);
+                    mängijaTee.set(i + silmadeArv, mängunupp);
+                }
             }
         }
+        //Arvuti nupp
         else {
             if (arvutiAlgus.contains(mängunupp)) {
                 arvutiAlgus.remove(mängunupp);
                 arvutiTee.set(silmadeArv - 1, mängunupp);
             }
             else if (arvutiTee.contains(mängunupp))  {
-                int i = arvutiTee.indexOf(mängunupp);
-                arvutiTee.remove(mängunupp);
-                arvutiTee.set(i + silmadeArv, mängunupp);
+                // Teepealt lõppu
+                if (arvutiTee.indexOf(mängunupp) + silmadeArv == 14) {
+                    arvutiTee.set(arvutiTee.indexOf(mängunupp), null);
+                    arvutiLõpp.add(mängunupp);
+                }
+                // Teepeal edasi
+                else {
+                    int i = arvutiTee.indexOf(mängunupp);
+                    arvutiTee.remove(mängunupp);
+                    arvutiTee.set(i + silmadeArv, mängunupp);
+                }
             }
         }
     }
@@ -117,7 +146,7 @@ public class Mängulaud {
         }
     }
 
-    //Liigutab lõppu, enne peab kontrolli läbima.
+    /*Liigutab lõppu, enne peab kontrolli läbima.
     public void liigutaLõppu(Mängunupp mängunupp) {
         int eemalda = mängijaTee.indexOf(mängunupp);
         if (mängunupp.isMängijaOma()) {
@@ -129,6 +158,7 @@ public class Mängulaud {
             arvutiLõpp.add(mängunupp);
         }
     }
+    */
 
     // Iga käigu alguses kontrollib kas igat nuppu saab liigutada.
     // Algne variant, vajab veel lõppu kontrolli, boonus ruudu kontrolli.
