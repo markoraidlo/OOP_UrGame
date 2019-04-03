@@ -20,11 +20,35 @@ public class Mängulaud {
     private List<Mängunupp> mängijaLõpp = new ArrayList<>();
     private List<Mängunupp> arvutiLõpp = new ArrayList<>();
 
-    List<Mängunupp> mängijaTee = Arrays.asList(new Mängunupp[14]);
-    List<Mängunupp> arvutiTee = Arrays.asList(new Mängunupp[14]);
+    private List<Mängunupp> mängijaTee = Arrays.asList(new Mängunupp[14]);
+    private List<Mängunupp> arvutiTee = Arrays.asList(new Mängunupp[14]);
 
-    List<Mängunupp> mängijaNuppud = new ArrayList<>();
-    List<Mängunupp> arvutiNuppud = new ArrayList<>();
+    private List<Mängunupp> mängijaNuppud = new ArrayList<>();
+    private List<Mängunupp> arvutiNuppud = new ArrayList<>();
+
+    public List<Mängunupp> getMängijaAlgus() {
+        return mängijaAlgus;
+    }
+
+    public List<Mängunupp> getArvutiAlgus() {
+        return arvutiAlgus;
+    }
+
+    public List<Mängunupp> getMängijaTee() {
+        return mängijaTee;
+    }
+
+    public List<Mängunupp> getArvutiTee() {
+        return arvutiTee;
+    }
+
+    public List<Mängunupp> getMängijaNuppud() {
+        return mängijaNuppud;
+    }
+
+    public List<Mängunupp> getArvutiNuppud() {
+        return arvutiNuppud;
+    }
 
     // Constructor mis loob nuppud ning panneb nad mängualgusesse
     public Mängulaud() {
@@ -130,19 +154,8 @@ public class Mängulaud {
 
     // Iga käigu alguses kontrollib kas igat nuppu saab liigutada.
     // Algne variant, vajab veel lõppu kontrolli, boonus ruudu kontrolli.
-    public List<Mängunupp> kontroll(boolean mängijaKäik, int silmadeArv) {
+    public List<Mängunupp> kontroll(int silmadeArv,List<Mängunupp> kontrolli1,List<Mängunupp> kontrolli2,List<Mängunupp> vastane) {
         List<Mängunupp> lubatudNuppud = new ArrayList<>();
-
-        // Selleks et samat koodi ei peaks arvuti ja mängija jaoks kirjutama
-        List<Mängunupp> kontrolli1;
-        List<Mängunupp> kontrolli2;
-        if (mängijaKäik) {
-            kontrolli1 = mängijaAlgus;
-            kontrolli2 = mängijaTee;
-        } else {
-            kontrolli1 = arvutiAlgus;
-            kontrolli2 = arvutiTee;
-        }
 
         //Kontrollib nuppud kas on tühi ruut või et ei ole enda oma
         for (Mängunupp mängunupp : kontrolli1) {
@@ -153,6 +166,10 @@ public class Mängulaud {
         for (Mängunupp mängunupp: kontrolli2) {
             int nuppuAsukoht = kontrolli2.indexOf(mängunupp);
             if (mängunupp != null) {
+                //Kui boonus ruudul on vastane, siis sinna käia ei saa.
+                if ((silmadeArv + nuppuAsukoht) == 7 && vastane.get(7) != null)
+                    continue;
+
                 if (nuppuAsukoht + silmadeArv == 14) {
                     lubatudNuppud.add(mängunupp);
                 }
@@ -192,22 +209,22 @@ public class Mängulaud {
                     if (tee.get(2) != null)
                         rida.set(i,"[" + tee.get(2) + "]");
                     else
-                        rida.set(i,"[ ]");
+                        rida.set(i,"[]");
                     break;
                 case 2:
                     if (tee.get(1) != null)
                         rida.set(i,"[" + tee.get(1) + "]");
                     else
-                        rida.set(i,"[ ]");
+                        rida.set(i,"[]");
                     break;
                 case 3:
                     if (tee.get(0) != null)
                         rida.set(i,"[" + tee.get(0) + "]");
                     else
-                        rida.set(i,"[ ]");
+                        rida.set(i,"[]");
                     break;
                 case 4:
-                    rida.set(i, "         ");
+                    rida.set(i, "     ");
                     break;
                 case 5:
                     if (tee.get(13) != null)
@@ -219,7 +236,7 @@ public class Mängulaud {
                     if (tee.get(12) != null)
                         rida.set(i,"[" + tee.get(12) + "]");
                     else
-                        rida.set(i,"[ ]");
+                        rida.set(i,"[]");
                     break;
             }
         }

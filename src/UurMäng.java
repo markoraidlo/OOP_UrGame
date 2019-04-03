@@ -12,6 +12,7 @@ public class UurMäng {
         Arvuti arvuti = new Arvuti();
         List<Mängunupp> lubatud;
         int silmadeArv;
+        int liigutatudNuppuAsukoht;
 
         // Mängu alguses väljastatav tekst.
         System.out.println("----------------------------------------------------------------------------------------------------------------");
@@ -43,8 +44,8 @@ public class UurMäng {
                 break;
 
             //Mängija käik.
-            System.out.println("Sinu käik.");
             while (true) {
+                System.out.println("Sinu käik.");
                 silmadeArv = täring.veereta();
                 System.out.println("Täring veeretas: " + silmadeArv);
 
@@ -56,7 +57,7 @@ public class UurMäng {
                 }
 
                 //Kontroll(Mis nuppudega võib käia)
-                lubatud = mängulaud.kontroll(true, silmadeArv);
+                lubatud = mängulaud.kontroll(silmadeArv,mängulaud.getMängijaAlgus(),mängulaud.getMängijaTee(),mängulaud.getArvutiTee());
                 System.out.println("Mängija võimalikud käigud" + lubatud);
                 if (lubatud.size() == 0) {
                     System.out.println("Sinul pole võimalik käia.");
@@ -67,12 +68,20 @@ public class UurMäng {
                 System.out.println("Vali nupp mida liigutada: ");
                 // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
                 int sisend = scan.nextInt();
-                mängulaud.liiguta(mängulaud.mängijaNuppud.get(sisend - 1), silmadeArv);
+                mängulaud.liiguta(mängulaud.getMängijaNuppud().get(sisend - 1), silmadeArv);
 
                 // Uus mängu laua väljastus.
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
                 mängulaud.väljastaLaud();
-                break;
+
+                //Boonus ruudu kontroll
+                liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
+                if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
+                    System.out.println("Astusid boonus ruudule.");
+                    continue;
+                }
+                else
+                    break;
             }
 
 
@@ -93,18 +102,27 @@ public class UurMäng {
                 }
 
                 //Kontroll(Mis nuppudega võib käia)
-                lubatud = mängulaud.kontroll(false, silmadeArv);
+                lubatud = mängulaud.kontroll(silmadeArv,mängulaud.getArvutiAlgus(),mängulaud.getArvutiTee(),mängulaud.getMängijaTee());
                 if (lubatud.size() == 0) {
                     System.out.println("Arvutil pole võimalik käia.");
                     break;
                 }
 
                 // Arvuti teeb oma asjad.
-                mängulaud.liiguta(arvuti.suvalineKäik(lubatud), silmadeArv);
-                TimeUnit.SECONDS.sleep(1);
+                Mängunupp arvutiKäik = arvuti.suvalineKäik(lubatud);
+                mängulaud.liiguta(arvutiKäik, silmadeArv);
+                TimeUnit.SECONDS.sleep(2);
                 System.out.println("Arvuti tegi oma käigu");
                 mängulaud.väljastaLaud();
-                break;
+
+                //Boonus ruudu kontroll
+                liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
+                if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
+                    System.out.println("Arvuti astus boonus ruudule.");
+                    continue;
+                }
+                else
+                    break;
             }
 
             //Siit läheb loop algusesse tagasi
