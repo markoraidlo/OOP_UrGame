@@ -16,12 +16,12 @@ public class UurMäng {
 
         // Mängu alguses väljastatav tekst.
         System.out.println("----------------------------------------------------------------------------------------------------------------");
-        System.out.println("Mängu reeglid:");
+        System.out.println("Mängureeglid:");
         System.out.println("Mängu eesmärk on viia enda 6 nuppu esimesena mängu lõppu.");
-        System.out.println("Käigu alguses visatakse 4 täringut, mille igal on 50/50 võimalus tagastada 1 või 0");
-        System.out.println("Mängija valib nuppu mida soovib liigutada ning liigutab seda vastav arvu ruute(0-4)");
-        System.out.println("Kui mängija nuppule, mis asub mänguväljakul maandub peale vastase nupp, siis läheb nupp algusesse tagasi.");
-        System.out.println("Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonus");
+        System.out.println("Iga käigu alguses visatakse 4 täringut, millel kõigil on 50/50 võimalus tagastada 1 või 0");
+        System.out.println("Mängija valib nupu, mida soovib liigutada ning liigutab seda vastav arvu ruute(0-4)");
+        System.out.println("Kui mängija nupule, mis asub mänguväljakul maandub peale vastase nupp, siis läheb nupp algusesse tagasi.");
+        System.out.println("Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonusruudul");
         System.out.println(",siis on see kaitsud vaenlase rünnakute eest.");
         System.out.println("Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa");
         //Mängulaua õpetus
@@ -65,7 +65,7 @@ public class UurMäng {
                     break;
                 }
 
-                System.out.println("Vali nupp mida liigutada: ");
+                System.out.println("Vali nupp, mida liigutada: ");
                 // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
                 int sisend = scan.nextInt();
                 mängulaud.liiguta(mängulaud.getMängijaNuppud().get(sisend - 1), silmadeArv);
@@ -118,7 +118,7 @@ public class UurMäng {
                 //Boonus ruudu kontroll
                 liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
                 if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
-                    System.out.println("Arvuti astus boonus ruudule.");
+                    System.out.println("Arvuti astus boonusruudule.");
                     continue;
                 }
                 else
