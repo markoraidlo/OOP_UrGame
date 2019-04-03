@@ -1,10 +1,14 @@
 import java.util.List;
 
 public class Arvuti {
-    //Arvuti objekt tegelab kõige parema käigu valimisega mängija vastase jaoks.
-
+    //Praegu arvuti valib suvalise nuppu lubatud käikudest.
+    //Hiljem saaks juurde teha mingi kindla strateegia.
     public Mängunupp suvalineKäik(List<Mängunupp> lubatud) {
-         int nuppuIndeks = (int)Math.round(Math.random()*lubatud.size());
-         return lubatud.get(nuppuIndeks);
+        if (lubatud.size() == 1)
+            return lubatud.get(0);
+        else {
+            int nuppuIndeks = (int) Math.round(Math.random() * (lubatud.size()-1));
+            return lubatud.get(nuppuIndeks);
+        }
     }
 }

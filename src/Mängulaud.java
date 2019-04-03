@@ -6,13 +6,10 @@ import java.util.stream.Stream;
 
 /*
 TO DO list:
-Lõpeta kontrollimis meetod
 Meetod mis väljastaks normaalse laua
-Boonus kontroll
-Boonus ruudul uus täringu veeretus
+Boonus ruut
 Täringu veeretus 0 erikord
-Ilustada koodi ning eemaldada asjad kus on mitu korda samat asja kasutatud.
-Uus skännerite süsteem
+Eemaldada asjad kus on mitu korda samat asja kasutatud.
  */
 
 public class Mängulaud {
@@ -25,11 +22,6 @@ public class Mängulaud {
 
     List<Mängunupp> mängijaTee = Arrays.asList(new Mängunupp[14]);
     List<Mängunupp> arvutiTee = Arrays.asList(new Mängunupp[14]);
-
-    List<String> ühekohaline = new ArrayList<>();
-
-    //private List<Mängunupp> mängijaTee = new ArrayList<>();
-    //private List<Mängunupp> arvutiTee = new ArrayList<>();
 
     List<Mängunupp> mängijaNuppud = new ArrayList<>();
     List<Mängunupp> arvutiNuppud = new ArrayList<>();
@@ -70,7 +62,6 @@ public class Mängulaud {
 
     // Mängu seisu väljastamine
     public void väljastaLaud() {
-
         System.out.println("__________________________");
         System.out.println("Arvuti algus: " + this.arvutiAlgus);
         System.out.println("Arvuti lõpp: " + this.arvutiLõpp);
@@ -78,7 +69,6 @@ public class Mängulaud {
         Laud();
         System.out.println(arvutiTee);
         System.out.println(mängijaTee);
-        System.out.println();
         System.out.println("Mägnija algus: " + this.mängijaAlgus);
         System.out.println("Mängoja lõpp: " + this.mängijaLõpp);
         System.out.println("__________________________");
@@ -97,72 +87,60 @@ public class Mängulaud {
 
     //Algne liigutamis meetod, vajab enen kontrolli läbimist. Tõenäoliselt on vaja paremaks teha.
     public void liiguta(Mängunupp mängunupp, int silmadeArv) {
-        //Mängija nupp
+        //Mängija nupp või arvuti oma
+        List<Mängunupp> algus;
+        List<Mängunupp> tee;
+        List<Mängunupp> lõpp;
+        List<Mängunupp> vastaseTee;
         if (mängunupp.isMängijaOma()) {
-            // Algusest teepeale
-            if (mängijaAlgus.contains(mängunupp)) {
-                mängijaAlgus.remove(mängunupp);
-                mängijaTee.set(silmadeArv - 1, mängunupp);
-            } else if (mängijaTee.contains(mängunupp)) {
-                // Teepealt lõppu
-                if (mängijaTee.indexOf(mängunupp) + silmadeArv == 14) {
-                    mängijaTee.set(mängijaTee.indexOf(mängunupp), null);
-                    mängijaLõpp.add(mängunupp);
-                }
-                // Teepeal edasi
-                else {
-                    int i = mängijaTee.indexOf(mängunupp);
-                    mängijaTee.remove(mängunupp);
-                    mängijaTee.set(i + silmadeArv, mängunupp);
-                }
-            }
+            algus = mängijaAlgus;
+            tee = mängijaTee;
+            lõpp = mängijaLõpp;
+            vastaseTee = arvutiTee;
         }
-        //Arvuti nupp
         else {
-            if (arvutiAlgus.contains(mängunupp)) {
-                arvutiAlgus.remove(mängunupp);
-                arvutiTee.set(silmadeArv - 1, mängunupp);
-            } else if (arvutiTee.contains(mängunupp)) {
-                // Teepealt lõppu
-                if (arvutiTee.indexOf(mängunupp) + silmadeArv == 14) {
-                    arvutiTee.set(arvutiTee.indexOf(mängunupp), null);
-                    arvutiLõpp.add(mängunupp);
-                }
-                // Teepeal edasi
-                else {
-                    int i = arvutiTee.indexOf(mängunupp);
-                    arvutiTee.remove(mängunupp);
-                    arvutiTee.set(i + silmadeArv, mängunupp);
+            algus = arvutiAlgus;
+            tee = arvutiTee;
+            lõpp = arvutiLõpp;
+            vastaseTee = mängijaTee;
+        }
+
+        // Algusest teepeale
+        if (algus.contains(mängunupp)) {
+            algus.remove(mängunupp);
+            tee.set(silmadeArv - 1, mängunupp);
+        } else if (tee.contains(mängunupp)) {
+            // Teepealt lõppu
+            if (tee.indexOf(mängunupp) + silmadeArv == 14) {
+                tee.set(tee.indexOf(mängunupp), null);
+                lõpp.add(mängunupp);
+            }
+            // Teepeal edasi
+            else {
+                int i = tee.indexOf(mängunupp);
+                tee.set(i, null);
+                tee.set(i + silmadeArv, mängunupp);
+                // Vastase nuppu hävitamine
+                if (vastaseTee.get(i + silmadeArv)!= null && i + silmadeArv > 3 && i + silmadeArv < 12) {
+                    hävita(vastaseTee.get(i + silmadeArv));
                 }
             }
         }
     }
 
-    // Selleks kui vastas nupp astub selle nuppu peale
-    public void liigutaAlgusesse(Mängunupp mängunupp) {
-        int eemalda = mängijaTee.indexOf(mängunupp);
+    // Nuppu liigutamine mängu algusesse
+    public void hävita(Mängunupp mängunupp) {
+        int eemalda;
         if (mängunupp.isMängijaOma()) {
+            eemalda = mängijaTee.indexOf(mängunupp);
             mängijaTee.set(eemalda, null);
             mängijaAlgus.add(mängunupp);
         } else {
+            eemalda = arvutiTee.indexOf(mängunupp);
             arvutiTee.set(eemalda, null);
             arvutiAlgus.add(mängunupp);
         }
     }
-
-    /*Liigutab lõppu, enne peab kontrolli läbima.
-    public void liigutaLõppu(Mängunupp mängunupp) {
-        int eemalda = mängijaTee.indexOf(mängunupp);
-        if (mängunupp.isMängijaOma()) {
-            mängijaTee.set(eemalda, null);
-            mängijaLõpp.add(mängunupp);
-        }
-        else {
-            arvutiTee.set(eemalda, null);
-            arvutiLõpp.add(mängunupp);
-        }
-    }
-    */
 
     // Iga käigu alguses kontrollib kas igat nuppu saab liigutada.
     // Algne variant, vajab veel lõppu kontrolli, boonus ruudu kontrolli.
@@ -182,19 +160,26 @@ public class Mängulaud {
 
         //Kontrollib nuppud kas on tühi ruut või et ei ole enda oma
         for (Mängunupp mängunupp : kontrolli1) {
-            //Kui ruut kuhu saab käia on tühi või seal asub vaenlase nupp
-            if (kontrolli2.get(silmadeArv - 1) == null || kontrolli2.get(silmadeArv - 1).isMängijaOma() != mängunupp.isMängijaOma())
+            //Kui ruut kuhu saab käia on tühi
+            if (kontrolli2.get(silmadeArv - 1) == null)
                 lubatudNuppud.add(mängunupp);
         }
-        /*for (Mängunupp mängunupp: kontrolli2) {
-            if (kontrolli2.get(silmadeArv-1) == null || kontrolli2.get(silmadeArv-1).isMängijaOma() != mängunupp.isMängijaOma())
-                lubatudNuppud.add(mängunupp);
+        for (Mängunupp mängunupp: kontrolli2) {
+            int nuppuAsukoht = kontrolli2.indexOf(mängunupp);
+            if (mängunupp != null) {
+                if (nuppuAsukoht + silmadeArv == 14) {
+                    lubatudNuppud.add(mängunupp);
+                }
+                else if (nuppuAsukoht + silmadeArv < 14) {
+                    if (kontrolli2.get(nuppuAsukoht + silmadeArv) == null)
+                        lubatudNuppud.add(mängunupp);
+                }
+            }
         }
-        */
         return lubatudNuppud;
     }
 
-
+    //Mängu laua vormistus.
     public void Laud() {
         List<String> arvutiRida = new ArrayList<>();
         List<String> ühineRida = new ArrayList<>();
@@ -257,24 +242,3 @@ public class Mängulaud {
         }
     }
 }
-
-   /* public static void Algne_laud() {
-        List<String> terve_laud = new ArrayList<>();
-
-        terve_laud.addAll(Arrays.asList("[#]", "[ ]", "[ ]", "[ ]", "[#]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[#]", "[ ]", "[ ]", "[ ]", "[#]", "[ ]"));
-
-        List<String> esimene_rida = terve_laud.subList(0,6);
-        for(String element: esimene_rida) {
-            System.out.print(element);
-        }
-        System.out.println();
-        List<String> teine_rida = terve_laud.subList(6,14);
-        for(String element2: teine_rida) {
-            System.out.print(element2);
-        }
-        System.out.println();
-        List<String> kolmas_rida = terve_laud.subList(14,20);
-        for(String element3: kolmas_rida) {
-            System.out.print(element3);
-        }
-        System.out.println();*/

@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -11,8 +10,8 @@ public class UurMäng {
         Täring täring = new Täring();
         Mängulaud mängulaud = new Mängulaud();
         Arvuti arvuti = new Arvuti();
-
-        List<Mängunupp> lubatud = new ArrayList<>();
+        List<Mängunupp> lubatud;
+        int silmadeArv;
 
         // Mängu alguses väljastatav tekst.
         System.out.println("----------------------------------------------------------------------------------------------------------------");
@@ -24,118 +23,104 @@ public class UurMäng {
         System.out.println("Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonus");
         System.out.println(",siis on see kaitsud vaenlase rünnakute eest.");
         System.out.println("Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa");
+        //Mängulaua õpetus
         System.out.println("----------------------------------------------------------------------------------------------------------------");
-
+        System.out.println("Programmi eeldus: mängija alati valib ühe nuppudest mida võib liigutada.");
+        System.out.println("----------------------------------------------------------------------------------------------------------------");
 
         // Kasutaja loeb reeglid läbi ning siis alustab.
         Scanner scan = new Scanner(System.in);
         System.out.println("Sisesta midagi, et alustada.");
-        String enter = scan.next();
+        String suvalineSisend = scan.next();
         mängulaud.väljastaLaud();
+        TimeUnit.SECONDS.sleep(1);
 
 
-        // Boostile maandus, üldine kontroll.
+        //Peamine mängu loop.
         while (true) {
-            //TimeUnit.SECONDS.sleep(5);
-
-            // Kontrollib kas mäng on läbi.
+            // Kontrollib kas mäng on läbi. Enne kasutaja käiku.
             if (mängulaud.võiduKontroll() != 0)
                 break;
 
             //Mängija käik.
             System.out.println("Sinu käik.");
-            int silmadeArv = täring.veereta();
-            System.out.println("Täring veeretas: " + silmadeArv);
+            while (true) {
+                silmadeArv = täring.veereta();
+                System.out.println("Täring veeretas: " + silmadeArv);
 
-            //Testin kontrolli
-            lubatud = mängulaud.kontroll(true, silmadeArv);
-            System.out.println(lubatud);
+                //Vastase käik kui täring veeretas 0
+                if (silmadeArv == 0) {
+                    System.out.println("Sa jääd vahele.");
+                    TimeUnit.SECONDS.sleep(1);
+                    break;
+                }
 
-            System.out.println("Vali nupp mida liigutada: ");
-            // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
-            int sisend = scan.nextInt();
-            mängulaud.liiguta(mängulaud.mängijaNuppud.get(sisend - 1), silmadeArv);
+                //Kontroll(Mis nuppudega võib käia)
+                lubatud = mängulaud.kontroll(true, silmadeArv);
+                System.out.println("Mängija võimalikud käigud" + lubatud);
+                if (lubatud.size() == 0) {
+                    System.out.println("Sinul pole võimalik käia.");
+                    TimeUnit.SECONDS.sleep(1);
+                    break;
+                }
+
+                System.out.println("Vali nupp mida liigutada: ");
+                // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
+                int sisend = scan.nextInt();
+                mängulaud.liiguta(mängulaud.mängijaNuppud.get(sisend - 1), silmadeArv);
+
+                // Uus mängu laua väljastus.
+                TimeUnit.SECONDS.sleep(1);
+                mängulaud.väljastaLaud();
+                break;
+            }
 
 
-            // Uus mängu laua väljastus.
-            mängulaud.väljastaLaud();
+            //Kontroll enne arvuti käiku
+            if (mängulaud.võiduKontroll() != 0)
+                break;
 
-            //test
-            mängulaud.liigutaAlgusesse(mängulaud.mängijaNuppud.get(0));
-            //
-
-
+            //Arvuti käik
+            TimeUnit.SECONDS.sleep(1);
             System.out.println("Arvuti käik.");
-            silmadeArv = täring.veereta();
-            System.out.println("Täring veeretas: " + silmadeArv);
 
+            while (true) {
+                silmadeArv = täring.veereta();
+                System.out.println("Täring veeretas: " + silmadeArv);
+                if (silmadeArv == 0) {
+                    System.out.println("Arvuti jääb vahele.");
+                    break;
+                }
 
-            //Testin kontrolli
-            lubatud = mängulaud.kontroll(false, silmadeArv);
-            System.out.println(lubatud);
+                //Kontroll(Mis nuppudega võib käia)
+                lubatud = mängulaud.kontroll(false, silmadeArv);
+                if (lubatud.size() == 0) {
+                    System.out.println("Arvutil pole võimalik käia.");
+                    break;
+                }
 
-            // Arvuti teeb oma asjad.
-            mängulaud.liiguta(arvuti.suvalineKäik(lubatud), silmadeArv);
-            System.out.println("Arvuti tegi oma käigu");
+                // Arvuti teeb oma asjad.
+                mängulaud.liiguta(arvuti.suvalineKäik(lubatud), silmadeArv);
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println("Arvuti tegi oma käigu");
+                mängulaud.väljastaLaud();
+                break;
+            }
 
-            mängulaud.väljastaLaud();
-
-            //Siit läheks loop algusesse tagasi
-            break;
+            //Siit läheb loop algusesse tagasi
+            //break;
         }
 
-        //Mängu kõppus väljastatav tekst.
+        //Mängu lõppus väljastatav tekst.
         System.out.println("Mäng on läbi");
+        TimeUnit.SECONDS.sleep(1);
         if (mängulaud.võiduKontroll() == 1) {
             System.out.println("Arvuti võitis!");
         }
         if (mängulaud.võiduKontroll() == 2) {
             System.out.println("Mängija võitis!");
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
     }
 }
-/*
-        for (int i = 0; i < 20; i++)
-            System.out.println(täring.veereta());
+//TimeUnit.SECONDS.sleep(5);
 
-        //mäng
-        System.out.println("---------------------------");
-        System.out.println("Arvuti algus: "); // + parasjagu nuppe
-        System.out.println("Arvuti lõpp: ");
-        Mängulaud.Algne_laud();
-        System.out.println("Mängija algus: "); // + parasjagu nuppe
-        System.out.println("Mängija lõpp: ");
-        System.out.println("---------------------------");
-
-        System.out.println("Vajuta ENTER, et alustada: ");
-        Scanner keyboard = new Scanner(System.in);
-        keyboard.nextLine();
-        System.out.println("Sinu käik.");
-        System.out.println("Täring veeretas: " + täring.veereta());
-        System.out.println("Vali nupp, mida liigutada: "); //klaviatuurilt lugemine?
-        Scanner scanner = new Scanner(System.in);
-        int nupp = scanner.nextInt();
-        System.out.println("Valisid nupu: " + nupp);
-
-'/
-
-
-/*
-
-
-
-__________________________
-Arvuti Algus: X X X X X X
-Arvuti Lõpp:
-
-[#]  [  ]  [  ]  [  ]                [#]  [  ]
-[  ]  [  ]  [  ]  [#]  [  ]  [  ]  [  ]  [  ]
-[#]  [  ]  [  ]  [  ]                [#]  [  ]
-
-Mängija Algus: 1 2 3 4 5 6
-Mängija Lõpp:
- */

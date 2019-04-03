@@ -1,5 +1,5 @@
 public class Mängunupp {
-
+    // Mängunuppu iseloomustab see kas ta omn mängija oma ning mitmes nupp see on.
     private boolean mängijaOma;
     private int nuppuNumber;
 
@@ -12,10 +12,7 @@ public class Mängunupp {
         return mängijaOma;
     }
 
-    public int getNuppuNumber() {
-        return nuppuNumber;
-    }
-
+    // Mängulaual on mängija nuppu numbriga 1-6, vastase omad lihtsalt X
     @Override
     public String toString() {
         if (mängijaOma) {
