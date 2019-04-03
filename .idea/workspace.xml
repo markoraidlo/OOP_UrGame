@@ -100,6 +100,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Täring.java" />
+        <option value="$PROJECT_DIR$/src/UurMäng.java" />
         <option value="$PROJECT_DIR$/src/Mängunupp.java" />
         <option value="$PROJECT_DIR$/src/Arvuti.java" />
         <option value="$PROJECT_DIR$/src/UurMäng.java" />
@@ -121,6 +122,7 @@
       <pane id="Scope" />
       <pane id="ProjectPane" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -143,13 +145,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.UurMäng">
+  <component name="RunManager" selected="Application.Mängulaud">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="OOP_UurGame" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mängulaud" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Mängulaud" />
+      <module name="OOP_UurGame" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -164,9 +173,11 @@
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.UurMäng" />
+      <item itemvalue="Application.Mängulaud" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Mängulaud" />
         <item itemvalue="Application.UurMäng" />
       </list>
     </recent_temporary>
@@ -188,6 +199,21 @@
       <workItem from="1554150906486" duration="399000" />
       <workItem from="1554202079586" duration="954000" />
     </task>
+    <task id="LOCAL-00005" summary="Mängulaua tegemine">
+      <created>1554051143603</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1554051143603</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Mängulaua tegemine">
+      <created>1554052135330</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554052135330</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -238,6 +264,49 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Proovisin mängulaua teha, kuid veits kahtlen, kas seda saab edasi kasutada" />
+    <MESSAGE value="Panin natuke ekraanile väljastamisi kirja" />
+    <MESSAGE value="Uuendused" />
+    <MESSAGE value="Mängulaua tegemine" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mängulaua tegemine" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
