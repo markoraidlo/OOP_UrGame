@@ -179,7 +179,11 @@ public class Mängulaud {
         System.out.println("Arvuti algus: " + this.arvutiAlgus);
         System.out.println("Arvuti lõpp: " + this.arvutiLõpp);
         laud();
+<<<<<<< HEAD
         System.out.println("Mägnija algus: " + this.mängijaAlgus);
+=======
+        System.out.println("Mängija algus: " + this.mängijaAlgus);
+>>>>>>> 3984380a3ab741eb33e1d02edfb08770176b0b32
         System.out.println("Mängija lõpp: " + this.mängijaLõpp);
         System.out.println("__________________________");
     }
