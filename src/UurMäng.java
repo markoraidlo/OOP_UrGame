@@ -92,6 +92,10 @@ public class UurMäng {
         if (mängulaud.võiduKontroll() == 2) {
             System.out.println("Mängija võitis!");
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
     }
 }
 /*
@@ -118,8 +122,7 @@ public class UurMäng {
         System.out.println("Valisid nupu: " + nupp);
 
 '/
-    }
-}
+
 
 /*
 

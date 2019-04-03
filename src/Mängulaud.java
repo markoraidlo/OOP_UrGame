@@ -194,10 +194,17 @@ public class Mängulaud {
         return lubatudNuppud;
     }
 
+<<<<<<< HEAD
     public void Laud() {
         List<String> arvutiRida = new ArrayList<>();
         List<String> ühineRida = new ArrayList<>();
         List<String> mängijaRida = new ArrayList<>();
+=======
+    }
+}
+
+    /*public static void Algne_laud() {
+>>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
 
         for (int i = 0; i <= 6; i++) {
             if (arvutiTee.get(i) == null) {
@@ -276,5 +283,29 @@ public class Mängulaud {
             System.out.print(element3);
         }
         System.out.println();
+<<<<<<< HEAD
         } */
 }
+=======
+        }
+
+    public void Mäng(List<Integer> mängija, List<Integer> arvuti, List<String> terve_laud) {
+        mängija.addAll(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+        arvuti.addAll(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
+
+        for (int i=0; i < terve_laud.size(); i++ ) {
+            if (mängija.get(i).equals(mängija.get(0))) {
+                Algne_laud();
+            }
+            if (mängija.contains(1)) { //kui on näiteks nupp 1, siis panna see asemele nii mängija listi, kui laua listi
+                mängija.set(i, 1);
+                terve_laud.set(19, "[1]");
+            }
+        }
+    }
+
+    public static void main(String[] args) { //praegu tegin selle main'i siia, et näha lauda
+        Algne_laud();
+        */
+
+>>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
