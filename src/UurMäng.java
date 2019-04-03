@@ -136,7 +136,7 @@ public class UurMäng {
             System.out.println("Arvuti võitis!");
         }
         if (mängulaud.võiduKontroll() == 2) {
-            System.out.println("Mängija võitis!");
+            System.out.println("Sina võitsid!");
         }
     }
 }

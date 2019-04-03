@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4486f0ce-7be2-4942-ad98-e4c87f2219cd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Mängulaud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mängulaud.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UurMäng.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UurMäng.java" afterDir="false" />
     </list>
@@ -33,8 +34,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/UurMäng.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="262">
-                  <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
+                <state relative-caret-position="572">
+                  <caret line="133" column="34" lean-forward="true" selection-start-line="133" selection-start-column="34" selection-end-line="133" selection-end-column="34" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -46,7 +47,7 @@
             <entry file="file://$PROJECT_DIR$/src/Arvuti.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state>
-                  <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+                  <caret column="1" selection-start-column="1" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -55,7 +56,7 @@
             <entry file="file://$PROJECT_DIR$/src/Täring.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="170">
-                  <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+                  <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -63,12 +64,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Mängunupp.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#267#268#0" expanded="true" />
-                    <element signature="e#300#301#0" expanded="true" />
-                  </folding>
+                <state relative-caret-position="306">
+                  <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -76,26 +73,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Mängulaud.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="457">
-                  <caret line="226" column="39" selection-start-line="226" selection-start-column="39" selection-end-line="226" selection-end-column="39" />
+                <state relative-caret-position="411">
+                  <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#930#931#0" expanded="true" />
-                    <element signature="e#965#966#0" expanded="true" />
-                    <element signature="e#1012#1013#0" expanded="true" />
-                    <element signature="e#1046#1047#0" expanded="true" />
-                    <element signature="e#1092#1093#0" expanded="true" />
-                    <element signature="e#1125#1126#0" expanded="true" />
-                    <element signature="e#1170#1171#0" expanded="true" />
-                    <element signature="e#1202#1203#0" expanded="true" />
-                    <element signature="e#1251#1252#0" expanded="true" />
-                    <element signature="e#1287#1288#0" expanded="true" />
-                    <element signature="e#1335#1336#0" expanded="true" />
-                    <element signature="e#1370#1371#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -127,17 +112,16 @@
         <option value="$PROJECT_DIR$/src/Täring.java" />
         <option value="$PROJECT_DIR$/src/Mängunupp.java" />
         <option value="$PROJECT_DIR$/src/Arvuti.java" />
-        <option value="$PROJECT_DIR$/src/UurMäng.java" />
-        <option value="$PROJECT_DIR$/src/UurMäng.java" />
         <option value="$PROJECT_DIR$/src/Mängulaud.java" />
+        <option value="$PROJECT_DIR$/src/UurMäng.java" />
+        <option value="$PROJECT_DIR$/src/UurMäng.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1060" />
-    <option name="y" value="16" />
-    <option name="width" value="861" />
-    <option name="height" value="995" />
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -145,8 +129,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -168,8 +152,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554318010698" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554321418350" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/mustruut-gradle2/mustruut-gradle" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
@@ -238,6 +222,7 @@
       <workItem from="1554138852848" duration="6603000" />
       <workItem from="1554150906486" duration="399000" />
       <workItem from="1554202079586" duration="954000" />
+      <workItem from="1554320833611" duration="581000" />
     </task>
     <task id="LOCAL-00005" summary="Mängulaua tegemine">
       <created>1554051143603</created>
@@ -278,7 +263,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32581000" />
+    <option name="totallyTimeSpent" value="33986000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -293,7 +278,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.06289978" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.12910284" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -302,7 +287,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38244852" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3856988" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -405,54 +390,38 @@
     <entry file="file://$PROJECT_DIR$/src/Arvuti.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Täring.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mängunupp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding>
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#300#301#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mängulaud.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="226" column="39" selection-start-line="226" selection-start-column="39" selection-end-line="226" selection-end-column="39" />
+        <state relative-caret-position="411">
+          <caret line="185" lean-forward="true" selection-start-line="185" selection-end-line="185" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#930#931#0" expanded="true" />
-            <element signature="e#965#966#0" expanded="true" />
-            <element signature="e#1012#1013#0" expanded="true" />
-            <element signature="e#1046#1047#0" expanded="true" />
-            <element signature="e#1092#1093#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
-            <element signature="e#1170#1171#0" expanded="true" />
-            <element signature="e#1202#1203#0" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1335#1336#0" expanded="true" />
-            <element signature="e#1370#1371#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UurMäng.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
+        <state relative-caret-position="572">
+          <caret line="133" column="34" lean-forward="true" selection-start-line="133" selection-start-column="34" selection-end-line="133" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

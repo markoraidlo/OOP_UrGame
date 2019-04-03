@@ -180,7 +180,7 @@ public class Mängulaud {
         System.out.println("Arvuti lõpp: " + this.arvutiLõpp);
         laud();
         System.out.println("Mägnija algus: " + this.mängijaAlgus);
-        System.out.println("Mängoja lõpp: " + this.mängijaLõpp);
+        System.out.println("Mängija lõpp: " + this.mängijaLõpp);
         System.out.println("__________________________");
     }
 
