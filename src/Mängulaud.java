@@ -181,58 +181,100 @@ public class Mängulaud {
 
     //Mängu laua vormistus.
     public void Laud() {
-        List<String> arvutiRida = new ArrayList<>();
+        List<String> arvutiRida = Arrays.asList(new String[7]);
         List<String> ühineRida = new ArrayList<>();
-        List<String> mängijaRida = new ArrayList<>();
+        List<String> mängijaRida = Arrays.asList(new String[7]);
 
-        for (int i = 0; i <= 6; i++) {
+        for (int i = 0; i < mängijaTee.size(); i++) {
             if (arvutiTee.get(i) == null) {
-                if (i == 0 || i == 5) {
-                    arvutiRida.add("[#]");
-                } else {
-                    arvutiRida.add("[]");
+                if (i == 3) {
+                    arvutiRida.set(0, "[#]");
+                }
+                if (i == 13) {
+                    arvutiRida.set(5, "[#]");
+                }
+                if (i == 14) {
+                    arvutiRida.set(4, "    ");
+                }
+                else {
+                    arvutiRida.set(i, "[]");
                 }
             } else {
-                if (i == 0 || i == 5) {
-                    arvutiRida.add("[#" + arvutiTee.get(i).toString() + "]");
+                if (i == 3) {
+                    arvutiRida.set(0, "[#" + arvutiTee.get(i).toString() + "]");
+                }
+                if (i == 13) {
+                    arvutiRida.set(5, "[#" + arvutiTee.get(i).toString() + "]");
                 } else {
-                    arvutiRida.add("[" + arvutiTee.get(i).toString() + "]");
+                    if (i == 0) {
+                        arvutiRida.set(3, "[" + arvutiTee.get(i).toString() + "]");
+                    }
+                    if (i == 1) {
+                        arvutiRida.set(2, "[" + arvutiTee.get(i).toString() + "]");
+                    }
+                    if (i == 2) {
+                        arvutiRida.set(1, "[" + arvutiTee.get(i).toString() + "]");
+                    }
+                    if (i == 12) {
+                        arvutiRida.set(6, "[" + arvutiTee.get(i).toString() + "]");
+                    }
                 }
             }
         }
 
-        for (int j = 0; j <= 6; j++) { // vaja ainult esimest rida, seepärast kuni 6ni
+        for (int j = 0; j < arvutiTee.size(); j++) { // vaja ainult esimest rida, seepärast kuni 6ni
             if (mängijaTee.get(j) == null) {
-                if (j == 0 || j == 5) {
-                    mängijaRida.add("[#]");
-                } else {
-                    mängijaRida.add("[]");
+                if (j == 3) {
+                    mängijaRida.set(0, "[#]");
+                }
+                if (j == 13) {
+                    mängijaRida.set(5, "[#]");
+                }
+                if (j == 14) {
+                    mängijaRida.set(4, "    ");
+                }
+                else {
+                    mängijaRida.set(j, "[]");
                 }
             } else {
-                if (j == 0 || j == 5) {
-                    mängijaRida.add("[#" + mängijaTee.get(j).toString() + "]");
+                if (j == 3) {
+                    mängijaRida.set(0, "[#" + mängijaRida.get(j).toString() + "]");
+                }
+                if (j == 13) {
+                    arvutiRida.set(5, "[#" + arvutiTee.get(i).toString() + "]");
                 } else {
-                    mängijaRida.add("[" + mängijaTee.get(j).toString() + "]");
+                    if (j == 0) {
+                        mängijaRida.set(3, "[" + mängijaTee.get(j).toString() + "]");
+                    }
+                    if (j == 1) {
+                        mängijaRida.set(2, "[" + mängijaTee.get(j).toString() + "]");
+                    }
+                    if (j == 2) {
+                        mängijaRida.set(1, "[" + mängijaTee.get(j).toString() + "]");
+                    }
+                    if (j == 12) {
+                        mängijaRida.set(6, "[" + mängijaTee.get(j).toString() + "]");
+                    }
                 }
             }
 
-            for (int k = 7; k < mängijaTee.size(); k++) { //et alustaks alates 7ndast liikmest vaatamist kuni listi lõpuni
+            for (int k = 4; k < 12; k++) { //et alustaks alates 7ndast liikmest vaatamist kuni listi lõpuni
                 if (mängijaTee.get(k) == null && arvutiTee.get(k) == null) {
-                    if (k == k + 4) {
+                    if (k == 7) {
                         ühineRida.add("[#]");
                     } else {
                         ühineRida.add("[]");
                     }
                 }
                 if (mängijaTee.get(k) != null && arvutiTee.get(k) == null) {
-                    if (k == k + 4) {
+                    if (k == 7) {
                         ühineRida.add("[#" + mängijaTee.get(k).toString() + "]");
                     } else {
                         ühineRida.add("[" + mängijaTee.get(k).toString() + "]");
                     }
                 }
                 if (mängijaTee.get(k) == null && arvutiTee.get(k) != null) {
-                    if (k == k + 4) {
+                    if (k == 7) {
                         ühineRida.add("[#" + arvutiTee.get(k).toString() + "]");
                     } else {
                         ühineRida.add("[" + arvutiTee.get(k).toString() + "]");
