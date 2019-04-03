@@ -194,17 +194,11 @@ public class Mängulaud {
         return lubatudNuppud;
     }
 
-<<<<<<< HEAD
+
     public void Laud() {
         List<String> arvutiRida = new ArrayList<>();
         List<String> ühineRida = new ArrayList<>();
         List<String> mängijaRida = new ArrayList<>();
-=======
-    }
-}
-
-    /*public static void Algne_laud() {
->>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
 
         for (int i = 0; i <= 6; i++) {
             if (arvutiTee.get(i) == null) {
@@ -239,21 +233,21 @@ public class Mängulaud {
 
             for (int k = 7; k < mängijaTee.size(); k++) { //et alustaks alates 7ndast liikmest vaatamist kuni listi lõpuni
                 if (mängijaTee.get(k) == null && arvutiTee.get(k) == null) {
-                    if (k == k+4) {
+                    if (k == k + 4) {
                         ühineRida.add("[#]");
                     } else {
                         ühineRida.add("[]");
                     }
                 }
                 if (mängijaTee.get(k) != null && arvutiTee.get(k) == null) {
-                    if (k == k+4) {
+                    if (k == k + 4) {
                         ühineRida.add("[#" + mängijaTee.get(k).toString() + "]");
                     } else {
                         ühineRida.add("[" + mängijaTee.get(k).toString() + "]");
                     }
                 }
                 if (mängijaTee.get(k) == null && arvutiTee.get(k) != null) {
-                    if (k == k+4) {
+                    if (k == k + 4) {
                         ühineRida.add("[#" + arvutiTee.get(k).toString() + "]");
                     } else {
                         ühineRida.add("[" + arvutiTee.get(k).toString() + "]");
@@ -262,6 +256,7 @@ public class Mängulaud {
             }
         }
     }
+}
 
    /* public static void Algne_laud() {
         List<String> terve_laud = new ArrayList<>();
@@ -282,30 +277,4 @@ public class Mängulaud {
         for(String element3: kolmas_rida) {
             System.out.print(element3);
         }
-        System.out.println();
-<<<<<<< HEAD
-        } */
-}
-=======
-        }
-
-    public void Mäng(List<Integer> mängija, List<Integer> arvuti, List<String> terve_laud) {
-        mängija.addAll(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
-        arvuti.addAll(Arrays.asList(0,0,0,0,0,0,0,0,0,0,0,0,0,0));
-
-        for (int i=0; i < terve_laud.size(); i++ ) {
-            if (mängija.get(i).equals(mängija.get(0))) {
-                Algne_laud();
-            }
-            if (mängija.contains(1)) { //kui on näiteks nupp 1, siis panna see asemele nii mängija listi, kui laua listi
-                mängija.set(i, 1);
-                terve_laud.set(19, "[1]");
-            }
-        }
-    }
-
-    public static void main(String[] args) { //praegu tegin selle main'i siia, et näha lauda
-        Algne_laud();
-        */
-
->>>>>>> 086b1bd58a83441f6a574e929c1c92d23bf869fe
+        System.out.println();*/
