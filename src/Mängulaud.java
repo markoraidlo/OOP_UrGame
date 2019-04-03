@@ -191,6 +191,9 @@ public class Mängulaud {
         */
         return lubatudNuppud;
 
+    }
+}
+
     /*public static void Algne_laud() {
 
         List<Integer> arvuti = new ArrayList<>();
@@ -234,6 +237,5 @@ public class Mängulaud {
 
     public static void main(String[] args) { //praegu tegin selle main'i siia, et näha lauda
         Algne_laud();
-        '/
-    }
-}
+        */
+

@@ -94,6 +94,9 @@ public class UurMäng {
         if (mängulaud.võiduKontroll() == 2) {
             System.out.println("Mängija võitis!");
         }
+
+    }
+}
 /*
         for (int i = 0; i < 20; i++)
             System.out.println(täring.veereta());
@@ -118,8 +121,7 @@ public class UurMäng {
         System.out.println("Valisid nupu: " + nupp);
 
 '/
-    }
-}
+
 
 /*
 
