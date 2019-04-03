@@ -1,11 +1,11 @@
 public class Mängunupp {
 
     private boolean mängijaOma;
-    private int nupuNumber;
+    private int nuppuNumber;
 
-    public Mängunupp(boolean mängijaOma, int nupuNumber) {
+    public Mängunupp(boolean mängijaOma, int nuppuNumber) {
         this.mängijaOma = mängijaOma;
-        this.nupuNumber = nupuNumber;
+        this.nuppuNumber = nuppuNumber;
     }
 
     public boolean isMängijaOma() {

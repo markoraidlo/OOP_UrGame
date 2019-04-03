@@ -34,7 +34,6 @@ public class UurMäng {
         mängulaud.väljastaLaud();
 
 
-
         // Boostile maandus, üldine kontroll.
         while (true) {
             //TimeUnit.SECONDS.sleep(5);
@@ -55,7 +54,7 @@ public class UurMäng {
             System.out.println("Vali nupp mida liigutada: ");
             // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
             int sisend = scan.nextInt();
-            mängulaud.liiguta(mängulaud.mängijaNuppud.get(sisend-1), silmadeArv);
+            mängulaud.liiguta(mängulaud.mängijaNuppud.get(sisend - 1), silmadeArv);
 
 
             // Uus mängu laua väljastus.
@@ -69,7 +68,6 @@ public class UurMäng {
             System.out.println("Arvuti käik.");
             silmadeArv = täring.veereta();
             System.out.println("Täring veeretas: " + silmadeArv);
-
 
 
             //Testin kontrolli
@@ -94,6 +92,8 @@ public class UurMäng {
         if (mängulaud.võiduKontroll() == 2) {
             System.out.println("Mängija võitis!");
         }
+    }
+}
 /*
         for (int i = 0; i < 20; i++)
             System.out.println(täring.veereta());
