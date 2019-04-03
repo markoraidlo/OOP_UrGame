@@ -1,16 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
-/*
-TO DO list:
-Meetod mis väljastaks normaalse laua
-Boonus ruut
-Täringu veeretus 0 erikord
-Eemaldada asjad kus on mitu korda samat asja kasutatud.
- */
 
 public class Mängulaud {
     // Nuppude asukohtade jaoks erinvad listid
@@ -188,8 +179,6 @@ public class Mängulaud {
         System.out.println("Arvuti algus: " + this.arvutiAlgus);
         System.out.println("Arvuti lõpp: " + this.arvutiLõpp);
         laud();
-        //System.out.println(arvutiTee);
-        //System.out.println(mängijaTee);
         System.out.println("Mägnija algus: " + this.mängijaAlgus);
         System.out.println("Mängoja lõpp: " + this.mängijaLõpp);
         System.out.println("__________________________");

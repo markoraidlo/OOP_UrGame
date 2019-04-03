@@ -140,5 +140,5 @@ public class UurMäng {
         }
     }
 }
-//TimeUnit.SECONDS.sleep(5);
+
 
