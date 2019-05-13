@@ -1,3 +1,5 @@
+package OOP_UrGame;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -178,10 +180,17 @@ public class Mängulaud {
         System.out.println("__________________________");
         System.out.println("Arvuti algus: " + this.arvutiAlgus);
         System.out.println("Arvuti lõpp: " + this.arvutiLõpp);
-        laud();
+        System.out.println(laud());
         System.out.println("Mängija algus: " + this.mängijaAlgus);
         System.out.println("Mängija lõpp: " + this.mängijaLõpp);
         System.out.println("__________________________");
+    }
+
+    //TODO: Parem logifaili kirjutis.
+    public String tagastaLaud() {
+        return  this.arvutiAlgus.toString() + this.arvutiLõpp.toString()  +
+                this.laud() +
+                this.mängijaAlgus.toString() + this.mängijaLõpp.toString();
     }
 
     // Teeb esimese või kolmanda mängulaua rea
@@ -233,7 +242,7 @@ public class Mängulaud {
     }
 
     //Mängu laua vormistus.
-    public void laud() {
+    public String laud() {
         List<String> arvutiRida = Arrays.asList(new String[7]);
         List<String> ühineRida = new ArrayList<>();
         List<String> mängijaRida = Arrays.asList(new String[7]);
@@ -265,9 +274,6 @@ public class Mängulaud {
             }
         }
 
-        System.out.println(arvutiRida);
-        System.out.println(ühineRida);
-        System.out.println(mängijaRida);
+        return arvutiRida.toString() + "\n" + ühineRida.toString() + "\n" + mängijaRida.toString() + "\n";
     }
-
 }
