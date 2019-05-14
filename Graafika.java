@@ -64,10 +64,15 @@ public class Graafika extends Application {
 
         //mängulaud
 
-        FlowPane pane1 = new FlowPane();
-        Button nupp = new Button("Veereta");
-        pane1.setAlignment(Pos.CENTER_RIGHT);
-        pane1.getChildren().add(nupp);
+        FlowPane mänguPane = new FlowPane();
+        Button veeretaNupp = new Button("Veereta");
+        veeretaNupp.setLayoutX(400);
+        veeretaNupp.setLayoutY(200);
+        mänguPane.getChildren().add(veeretaNupp);
+
+        VBox vBox1 = new VBox(10);
+        vBox1.setAlignment(Pos.CENTER_RIGHT);
+        vBox1.getChildren().addAll(mänguPane, veeretaNupp);
 
         peaLava.setOnHiding(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
