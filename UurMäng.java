@@ -1,11 +1,29 @@
+package OOP_UrGame;
 
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import static java.time.format.DateTimeFormatter.*;
+
 public class UurMäng {
 
+    //TODO: Lugemis meetod
+    //Kirjutb käigu logi faili
+    private static void fileWriter(String rida, String failinimi) throws Exception {
+        try (FileWriter fileWriter = new FileWriter(failinimi, true);
+             BufferedWriter puhverVälja = new BufferedWriter(fileWriter)) {
+            puhverVälja.write(rida);
+            puhverVälja.newLine();
+        }
+    }
+
+
     public static void main(String[] args) throws Exception {
+
         //Objektide loomine.
         Täring täring = new Täring();
         Mängulaud mängulaud = new Mängulaud();
@@ -13,6 +31,13 @@ public class UurMäng {
         List<Mängunupp> lubatud;
         int silmadeArv;
         int liigutatudNuppuAsukoht;
+
+        //Loob logi faili:
+        String failiNimi = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm")) + ".txt";
+        System.out.println(failiNimi);
+        File logiFail = new File(failiNimi);
+        logiFail.createNewFile();
+
 
         // Mängu alguses väljastatav tekst.
         System.out.println("----------------------------------------------------------------------------------------------------------------");
@@ -34,10 +59,12 @@ public class UurMäng {
         System.out.println("Sisesta midagi, et alustada.");
         String suvalineSisend = scan.next();
         mängulaud.väljastaLaud();
+        UurMäng.fileWriter(mängulaud.tagastaLaud(),failiNimi);
         TimeUnit.SECONDS.sleep(1);
 
 
         //Peamine mängu loop.
+        //TODO: Panna töötama koos graafikaga
         while (true) {
             // Kontrollib kas mäng on läbi. Enne kasutaja käiku.
             if (mängulaud.võiduKontroll() != 0)
@@ -73,6 +100,7 @@ public class UurMäng {
                 // Uus mängu laua väljastus.
                 TimeUnit.SECONDS.sleep(2);
                 mängulaud.väljastaLaud();
+                UurMäng.fileWriter(mängulaud.tagastaLaud(),failiNimi);
 
                 //Boonus ruudu kontroll
                 liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
@@ -114,6 +142,7 @@ public class UurMäng {
                 TimeUnit.SECONDS.sleep(2);
                 System.out.println("Arvuti tegi oma käigu");
                 mängulaud.väljastaLaud();
+                UurMäng.fileWriter(mängulaud.tagastaLaud(),failiNimi);
 
                 //Boonus ruudu kontroll
                 liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);

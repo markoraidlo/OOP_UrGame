@@ -1,3 +1,5 @@
+package OOP_UrGame;
+
 public class Mängunupp {
     // Mängunuppu iseloomustab see kas ta omn mängija oma ning mitmes nupp see on.
     private boolean mängijaOma;
