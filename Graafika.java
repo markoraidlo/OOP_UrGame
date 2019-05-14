@@ -109,7 +109,7 @@ public class Graafika extends Application {
         //Võiduteksti väljastamine eraldi aknana:
         //TODO: kuidas seda korrektselt teha?
         if (mängulaud.võiduKontroll() == 1) {
-            peaLava.setOnHiding(new EventHandler<WindowEvent>() {
+            peaLava.setOnShowing(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent event) {
                     Stage võitja1 = new Stage();
                     Label label1 = new Label("Arvuti võitis!");
@@ -128,7 +128,7 @@ public class Graafika extends Application {
             });
         }
         if (mängulaud.võiduKontroll() == 2) {
-            peaLava.setOnHiding(new EventHandler<WindowEvent>() {
+            peaLava.setOnShowing(new EventHandler<WindowEvent>() {
                 public void handle(WindowEvent event) {
                     Stage võitja2 = new Stage();
                     Label label2 = new Label("Sina võitsid!");
