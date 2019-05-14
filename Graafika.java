@@ -39,14 +39,11 @@ public class Graafika extends Application {
     }
 
     public void start(Stage peaLava) {
-        BorderPane piir = new BorderPane();
 
         //Algus ekraan:
         Stage esileht = new Stage();
         Label label = new Label("Mäng Ur");
-        label.setAlignment(Pos.CENTER_LEFT);
-        //label.setTranslateX(120);
-        //label.setTranslateY(100);
+        label.setAlignment(Pos.CENTER);
         label.setStyle("-fx-font: 30 ariel;");
         DropShadow shadow = new DropShadow();
 
@@ -58,6 +55,7 @@ public class Graafika extends Application {
                         "Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonusruudul\n" +
                         ", siis on see kaitsud vaenlase rünnakute eest.\n" +
                         "Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa.");
+        tekst.setStyle("-fx-font: 13 ariel;");
 
         //Alusta nupp
         Button alustaNupp = new Button("Alusta");
@@ -108,8 +106,48 @@ public class Graafika extends Application {
         peaLava.setScene(stseen2);
 
 
+        //Võiduteksti väljastamine eraldi aknana:
+        //TODO: kuidas seda korrektselt teha?
+        if (mängulaud.võiduKontroll() == 1) {
+            peaLava.setOnHiding(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent event) {
+                    Stage võitja1 = new Stage();
+                    Label label1 = new Label("Arvuti võitis!");
 
-        //Sulgemis kontroll:
+                    FlowPane pane = new FlowPane(10, 10);
+                    pane.setAlignment(Pos.CENTER);
+
+                    VBox vBox = new VBox(10);
+                    vBox.setAlignment(Pos.CENTER);
+                    vBox.getChildren().addAll(label1, pane);
+
+                    Scene stseen1 = new Scene(vBox);
+                    võitja1.setScene(stseen1);
+                    võitja1.show();
+                }
+            });
+        }
+        if (mängulaud.võiduKontroll() == 2) {
+            peaLava.setOnHiding(new EventHandler<WindowEvent>() {
+                public void handle(WindowEvent event) {
+                    Stage võitja2 = new Stage();
+                    Label label2 = new Label("Sina võitsid!");
+
+                    FlowPane pane = new FlowPane(10, 10);
+                    pane.setAlignment(Pos.CENTER);
+
+                    VBox vBox2 = new VBox(10);
+                    vBox2.setAlignment(Pos.CENTER);
+                    vBox2.getChildren().addAll(label2, pane);
+
+                    Scene stseen2 = new Scene(vBox2);
+                    võitja2.setScene(stseen2);
+                    võitja2.show();
+                }
+            });
+        }
+
+        //Sulgemise kontroll:
         peaLava.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 Stage kusimus = new Stage();
@@ -128,7 +166,7 @@ public class Graafika extends Application {
                     kusimus.hide();
                 });
 
-                // Kui küsimus akna kinni panna, siis ei lähe program kinni.
+                // Kui küsimus akna kinni panna, siis ei lähe programm kinni.
                 kusimus.setOnCloseRequest(event1 ->  {
                     peaLava.show();
                     kusimus.hide();
