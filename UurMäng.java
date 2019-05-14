@@ -9,9 +9,11 @@ import java.util.concurrent.TimeUnit;
 
 import static java.time.format.DateTimeFormatter.*;
 
+//TODO: Kui Graafika klass valmis ja tõõtab siis võib UurMäng.java ära kustutada.
+
 public class UurMäng {
 
-    //TODO: Lugemis meetod
+
     //Kirjutb käigu logi faili
     private static void fileWriter(String rida, String failinimi) throws Exception {
         try (FileWriter fileWriter = new FileWriter(failinimi, true);
@@ -23,6 +25,7 @@ public class UurMäng {
 
 
     public static void main(String[] args) throws Exception {
+
 
         //Objektide loomine.
         Täring täring = new Täring();
@@ -64,7 +67,6 @@ public class UurMäng {
 
 
         //Peamine mängu loop.
-        //TODO: Panna töötama koos graafikaga
         while (true) {
             // Kontrollib kas mäng on läbi. Enne kasutaja käiku.
             if (mängulaud.võiduKontroll() != 0)

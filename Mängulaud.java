@@ -1,11 +1,13 @@
 package OOP_UrGame;
 
+import javafx.scene.layout.BorderPane;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 
-public class Mängulaud {
+public class Mängulaud extends BorderPane {
     // Nuppude asukohtade jaoks erinvad listid
     private List<Mängunupp> mängijaAlgus = new ArrayList<>();
     private List<Mängunupp> arvutiAlgus = new ArrayList<>();
@@ -186,7 +188,6 @@ public class Mängulaud {
         System.out.println("__________________________");
     }
 
-    //TODO: Parem logifaili kirjutis.
     public String tagastaLaud() {
         return  this.arvutiAlgus.toString() + this.arvutiLõpp.toString()  +
                 this.laud() +
