@@ -10,7 +10,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -52,6 +51,7 @@ public class Graafika extends Application {
             puhverVälja.newLine();
         }
     }
+
 
     public static void main(String[] args) {
         launch(args);
@@ -175,11 +175,6 @@ public class Graafika extends Application {
         peaLava.setResizable(false);
         peaLava.setScene(stseen2);
 
-        TextField tekstField = new TextField();
-        tekstField.setAlignment(Pos.CENTER_RIGHT);
-        pane1.getChildren().addAll(tekstField);
-        tekstField.setText("Sinu käik");
-
 
         // Game loop
         new AnimationTimer() {
@@ -193,10 +188,6 @@ public class Graafika extends Application {
                 if (mängulaud.võiduKontroll() != 0)
                     this.stop();
 
-                //Äkki saab niimoodi erinevat teksti väljastada?
-
-              
-  
                 // Veereta nuppu vajutus paneb tööle kasutaja ja arvuti loopid.
                 veeretaNupp.setOnMouseClicked(event -> {
                     veeretaNupp.setDisable(true);
@@ -204,7 +195,6 @@ public class Graafika extends Application {
                     //TODO: "Sinu käik" animation
                     int silmad = täring.veereta();
                     System.out.println(silmad);
-                    tekstField.setText("Täring veeretas " + silmad);
                     //TODO: "Täring" animation
 
                     //Kontroll(Mis nuppudega võib käia)
@@ -240,7 +230,6 @@ public class Graafika extends Application {
                     }
                     else {
                         //TODO: Jääd vahele animation / Veeretasid nulli
-                        tekstField.setText("Jääd vahele!");
                         //Jääd vahele
                     }
 
@@ -248,24 +237,20 @@ public class Graafika extends Application {
 
 
                     //Boonus ruudu kontroll
-
                     /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
                        if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
                            //TODO: Boonusruudu animatsioon
-                           tekstField.setText("Astusid boonusruudule!");
                            continue;
                         }
                         else
                             break;
 */
 
-
                     //ARVUTI LOOP:
 
                     //Un disable loop
 /*
                     while (true){
-
                     }
                     */
                     veeretaNupp.setDisable(false);
@@ -278,28 +263,21 @@ public class Graafika extends Application {
                 while (true) {
                     silmadeArv = täring.veereta();
                     //TODO: "Täring" animation
-
                     if (silmadeArv == 0) {
-                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
-
                     //Kontroll(Mis nuppudega võib käia)
                     lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
                     if (lubatud.size() == 0) {
-                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
-
                     Mängunupp arvutiKäik = arvuti.suvalineKäik(lubatud);
                     mängulaud.liiguta(arvutiKäik, silmadeArv);
-
                     //TODO: Arvuti käik
                     //TODO: Laua animatsioon.
                     mängulaud.väljastaLaud();
-
                     //Logi
                     try {
                         Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
@@ -307,11 +285,9 @@ public class Graafika extends Application {
                     catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-
                     //Boonus ruudu kontroll
                     liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
                     if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 || liigutatudNuppuAsukoht == 13) {
-                        tekst.setText("Astusid boonusruudule!");
                         //TODO: Boonusruudu animatsioon
                         continue;
                     } else
@@ -380,6 +356,7 @@ public class Graafika extends Application {
                 });
 
                 // nuppude grupeerimine
+                //TODO: See dublicate ära lahendada
                 FlowPane pane = new FlowPane(10, 10);
                 pane.setAlignment(Pos.CENTER);
                 pane.getChildren().addAll(okButton, cancelButton);
@@ -397,4 +374,3 @@ public class Graafika extends Application {
         });
     }
 }
-
