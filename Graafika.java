@@ -51,7 +51,6 @@ public class Graafika extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -195,14 +194,21 @@ public class Graafika extends Application {
                 if (mängulaud.võiduKontroll() != 0)
                     this.stop();
 
+                //Äkki saab niimoodi erinevat teksti väljastada?
+                TextField tekst = new TextField();
+                tekst.setAlignment(Pos.CENTER_RIGHT);
+                pane1.getChildren().addAll(tekst);
+
                 //MÄNGIJA LOOP:
-               /* while (true) {
+                while (true) {
 
                     //TODO: "Sinu käik" animation
+                    tekst.setText("Sinu käik");
                     silmadeArv = täring.veereta();
                     //TODO: "Täring" animation
 
                     if (silmadeArv == 0) {
+                        tekst.setText("Jääd vahele!");
                         //TODO: Jääd vahele animation / Veeretasid nulli
                         break;
                     }
@@ -211,6 +217,7 @@ public class Graafika extends Application {
                     lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
                     //TODO: Lubatud nuppud
                     if (lubatud.size() == 0) {
+                        tekst.setText("Jääd vahele!");
                         //TODO: Jääd vahele / Pole võimalik käia
                         break;
                     }
@@ -253,6 +260,7 @@ public class Graafika extends Application {
                     //TODO: "Täring" animation
 
                     if (silmadeArv == 0) {
+                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
@@ -260,6 +268,7 @@ public class Graafika extends Application {
                     //Kontroll(Mis nuppudega võib käia)
                     lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
                     if (lubatud.size() == 0) {
+                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
