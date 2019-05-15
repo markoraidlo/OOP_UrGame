@@ -205,6 +205,7 @@ public class Graafika extends Application {
                     //TODO: "Sinu käik" animation
                     tekst.setText("Sinu käik");
                     silmadeArv = täring.veereta();
+                    tekst.setText("Täring veeretas " + silmadeArv);
                     //TODO: "Täring" animation
 
                     if (silmadeArv == 0) {
