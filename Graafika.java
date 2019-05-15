@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -179,7 +180,7 @@ public class Graafika extends Application {
         new AnimationTimer() {
             @Override public void handle(long currentNanoTime) {
                 //Objektide loomine.
-                List<Mängunupp> lubatud;
+                List<Mängunupp> lubatud = new ArrayList<>();
                 int silmadeArv;
                 int liigutatudNuppuAsukoht;
 
@@ -190,66 +191,61 @@ public class Graafika extends Application {
                 // Veereta nuppu vajutus paneb tööle kasutaja ja arvuti loopid.
                 veeretaNupp.setOnMouseClicked(event -> {
                     veeretaNupp.setDisable(true);
-                    //MÄNGIJA LOOP:
-                    while (true) {
 
-                        //TODO: "Sinu käik" animation
-                        int silmad = täring.veereta();
-                        System.out.println(silmad);
-                        //TODO: "Täring" animation
+                    //TODO: "Sinu käik" animation
+                    int silmad = täring.veereta();
+                    System.out.println(silmad);
+                    //TODO: "Täring" animation
 
-                        if (silmad == 0) {
-                        //TODO: Jääd vahele animation / Veeretasid nulli
-                            break;
-                        }
+                    //Kontroll(Mis nuppudega võib käia)
+                    List<Mängunupp> lubatudList  = mängulaud.kontroll(silmad, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
 
-                        //Kontroll(Mis nuppudega võib käia)
-                        List<Mängunupp> lubatudList = mängulaud.kontroll(silmad, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
-                        Group lubatudGroup = new Group();
-                        lubatudGroup.getChildren().addAll(lubatudList);
-                        if (lubatudList.size() == 0) {
-                            //TODO: Jääd vahele / Pole võimalik käia
-                            break;
-                        }
 
-                        //Handle click:
 
-                        for (Mängunupp mängunupp : lubatudList) {
+                    if (silmad != 0 && lubatudList.size() != 0) {
+                        for (Mängunupp mängunupp : mängulaud.getMängijaNuppud()) {
                             mängunupp.setOnMouseClicked(e -> {
-                                mängulaud.liiguta(mängunupp, silmad);
-                                mängulaud.väljastaLaud();
-                                lauaPane.getChildren().removeAll(mängulaud.getMängijaNuppud());
-                                lauaPane.getChildren().removeAll(mängulaud.getArvutiNuppud());
-                                for (Mängunupp nupp : mängulaud.getArvutiNuppud()) {
-                                    lauaPane.add(nupp,nupp.getI(),nupp.getJ());
-                                }
-                                for (Mängunupp nupp : mängulaud.getMängijaNuppud()) {
-                                    lauaPane.add(nupp,nupp.getI(),nupp.getJ());
+                                if (lubatudList.contains(mängunupp)) {
+                                    mängulaud.liiguta(mängunupp, silmad);
+                                    mängulaud.väljastaLaud();
+                                    lauaPane.getChildren().removeAll(mängulaud.getMängijaNuppud());
+                                    lauaPane.getChildren().removeAll(mängulaud.getArvutiNuppud());
+                                    for (Mängunupp nupp : mängulaud.getArvutiNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                                    }
+                                    for (Mängunupp nupp : mängulaud.getMängijaNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
                                     }
 
-                                //Logi
-                                try {
-                                    Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
-                                }
-                                catch (Exception ex){
-                                    System.out.println(ex.getMessage());
-                                }
+                                    //Logi
+                                    try {
+                                        Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
+                                    } catch (Exception ex) {
+                                        System.out.println(ex.getMessage());
+                                    }
 
+                                }
                             });
                         }
+                    }
+                    else {
+                        //TODO: Jääd vahele animation / Veeretasid nulli
+                        //Jääd vahele
+                    }
 
 
-                        //Boonus ruudu kontroll
-                        /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
-                        if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
-                            //TODO: Boonusruudu animatsioon
-                            continue;
+
+
+                    //Boonus ruudu kontroll
+                    /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
+                       if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
+                           //TODO: Boonusruudu animatsioon
+                           continue;
                         }
                         else
                             break;
 */
-                        break;
-                    }
+
                     //ARVUTI LOOP:
 
                     //Un disable loop
