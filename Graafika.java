@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -175,6 +176,12 @@ public class Graafika extends Application {
         peaLava.setResizable(false);
         peaLava.setScene(stseen2);
 
+        //Äkki saab niimoodi erinevat teksti väljastada?
+        TextField tekstField = new TextField();
+        tekstField.setAlignment(Pos.CENTER_RIGHT);
+        pane1.getChildren().addAll(tekstField);
+        tekstField.setText("Sinu käik");
+
 
         // Game loop
         new AnimationTimer() {
@@ -195,6 +202,7 @@ public class Graafika extends Application {
                     //TODO: "Sinu käik" animation
                     int silmad = täring.veereta();
                     System.out.println(silmad);
+                    tekstField.setText("Täring veeretas " + silmad);
                     //TODO: "Täring" animation
 
                     //Kontroll(Mis nuppudega võib käia)
@@ -230,6 +238,7 @@ public class Graafika extends Application {
                     }
                     else {
                         //TODO: Jääd vahele animation / Veeretasid nulli
+                        tekstField.setText("Jääd vahele!");
                         //Jääd vahele
                     }
 
@@ -240,6 +249,7 @@ public class Graafika extends Application {
                     /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
                        if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
                            //TODO: Boonusruudu animatsioon
+                           tekstField.setText("Astusid boonusruudule!");
                            continue;
                         }
                         else
