@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -173,6 +174,11 @@ public class Graafika extends Application {
         peaLava.setResizable(false);
         peaLava.setScene(stseen2);
 
+        TextField tekstField = new TextField();
+        tekstField.setAlignment(Pos.CENTER_RIGHT);
+        pane1.getChildren().addAll(tekstField);
+        tekstField.setText("Sinu käik");
+
 
         // Game loop
         new AnimationTimer() {
@@ -195,23 +201,56 @@ public class Graafika extends Application {
                     this.stop();
 
                 //Äkki saab niimoodi erinevat teksti väljastada?
-                TextField tekst = new TextField();
-                tekst.setAlignment(Pos.CENTER_RIGHT);
-                pane1.getChildren().addAll(tekst);
 
-                //MÄNGIJA LOOP:
-                while (true) {
+
+              
+  
+                // Veereta nuppu vajutus paneb tööle kasutaja ja arvuti loopid.
+                veeretaNupp.setOnMouseClicked(event -> {
+                    veeretaNupp.setDisable(true);
 
                     //TODO: "Sinu käik" animation
-                    tekst.setText("Sinu käik");
-                    silmadeArv = täring.veereta();
-                    tekst.setText("Täring veeretas " + silmadeArv);
+                    int silmad = täring.veereta();
+                    System.out.println(silmad);
+                    tekstField.setText("Täring veeretas " + silmad);
                     //TODO: "Täring" animation
 
-                    if (silmadeArv == 0) {
-                        tekst.setText("Jääd vahele!");
+                    //Kontroll(Mis nuppudega võib käia)
+                    List<Mängunupp> lubatudList  = mängulaud.kontroll(silmad, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
+
+
+
+                    if (silmad != 0 && lubatudList.size() != 0) {
+                        for (Mängunupp mängunupp : mängulaud.getMängijaNuppud()) {
+                            mängunupp.setOnMouseClicked(e -> {
+                                if (lubatudList.contains(mängunupp)) {
+                                    mängulaud.liiguta(mängunupp, silmad);
+                                    mängulaud.väljastaLaud();
+                                    lauaPane.getChildren().removeAll(mängulaud.getMängijaNuppud());
+                                    lauaPane.getChildren().removeAll(mängulaud.getArvutiNuppud());
+                                    for (Mängunupp nupp : mängulaud.getArvutiNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                                    }
+                                    for (Mängunupp nupp : mängulaud.getMängijaNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                                    }
+
+                                    //Logi
+                                    try {
+                                        Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
+                                    } catch (Exception ex) {
+                                        System.out.println(ex.getMessage());
+                                    }
+
+                                }
+                            });
+                        }
+                    }
+                    else {
                         //TODO: Jääd vahele animation / Veeretasid nulli
-                        break;
+                        tekstField.setText("Jääd vahele!");
+                        //Jääd vahele
+
                     }
 
                     //Kontroll(Mis nuppudega võib käia)
@@ -228,9 +267,19 @@ public class Graafika extends Application {
                     // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
                     mängulaud.liiguta(mängulaud.getMängijaNuppud().get(sisend - 1), silmadeArv);
 
-                    // Uus mängu laua väljastus.
-                    //TODO: Laua animatsioon.
-                    mängulaud.väljastaLaud();
+
+                    //Boonus ruudu kontroll
+
+                    /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
+                       if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
+                           //TODO: Boonusruudu animatsioon
+                           tekstField.setText("Astusid boonusruudule!");
+                           continue;
+                        }
+                        else
+                            break;
+*/
+
 
                     //Logi
                     try {
