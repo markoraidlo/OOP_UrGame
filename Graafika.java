@@ -29,7 +29,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -185,15 +184,24 @@ public class Graafika extends Application {
         new AnimationTimer() {
             @Override public void handle(long currentNanoTime) {
                 //Objektide loomine.
-                List<Mängunupp> lubatud = new ArrayList<>();
+                List<Mängunupp> lubatud;
                 int silmadeArv;
                 int liigutatudNuppuAsukoht;
+
+                try {
+                    Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+
 
 
                 if (mängulaud.võiduKontroll() != 0)
                     this.stop();
 
                 //Äkki saab niimoodi erinevat teksti väljastada?
+
 
               
   
@@ -242,9 +250,22 @@ public class Graafika extends Application {
                         //TODO: Jääd vahele animation / Veeretasid nulli
                         tekstField.setText("Jääd vahele!");
                         //Jääd vahele
+
                     }
 
+                    //Kontroll(Mis nuppudega võib käia)
+                    lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
+                    //TODO: Lubatud nuppud
+                    if (lubatud.size() == 0) {
+                        tekst.setText("Jääd vahele!");
+                        //TODO: Jääd vahele / Pole võimalik käia
+                        break;
+                    }
 
+                    //TODO: Nuppu valik
+
+                    // Toimub nuppu liigutamine kui seda saab liigutada, kui ei saa siis tuleb uuesti sisestada.
+                    mängulaud.liiguta(mängulaud.getMängijaNuppud().get(sisend - 1), silmadeArv);
 
 
                     //Boonus ruudu kontroll
@@ -260,20 +281,30 @@ public class Graafika extends Application {
 */
 
 
-                    //ARVUTI LOOP:
-
-                    //Un disable loop
-/*
-                    while (true){
-
+                    //Logi
+                    try {
+                        Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
                     }
-                    */
-                    veeretaNupp.setDisable(false);
-                });
+                    catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                    //Boonus ruudu kontroll
+                    liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
+                    if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
+                        //TODO: Boonusruudu animatsioon
+                        tekst.setText("Astusid boonusruudule!");
+                        continue;
+                    }
+                    else
+                        break;
+
+                }
+
 
 
                 //ARVUTI LOOP:
-                /*
+
                 //TODO: "Vastase käik" animation
                 while (true) {
                     silmadeArv = täring.veereta();
