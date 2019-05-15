@@ -380,7 +380,6 @@ public class Graafika extends Application {
                 });
 
                 // nuppude grupeerimine
-                //TODO: See dublicate ära lahendada
                 FlowPane pane = new FlowPane(10, 10);
                 pane.setAlignment(Pos.CENTER);
                 pane.getChildren().addAll(okButton, cancelButton);
