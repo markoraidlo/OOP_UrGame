@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class Mängulaud extends BorderPane {
+public class Mängulaud  {
     // Nuppude asukohtade jaoks erinvad listid
     private List<Mängunupp> mängijaAlgus = new ArrayList<>();
     private List<Mängunupp> arvutiAlgus = new ArrayList<>();
@@ -114,17 +114,43 @@ public class Mängulaud extends BorderPane {
         if (algus.contains(mängunupp)) {
             algus.remove(mängunupp);
             tee.set(silmadeArv - 1, mängunupp);
+            int[] arvud = {3,2,1,0};
+            mängunupp.setI(arvud[silmadeArv - 1]);
+            if (mängunupp.isMängijaOma())
+                mängunupp.setJ(4);
+            else
+                mängunupp.setJ(2);
         } else if (tee.contains(mängunupp)) {
             // Teepealt lõppu
             if (tee.indexOf(mängunupp) + silmadeArv == 14) {
                 tee.set(tee.indexOf(mängunupp), null);
                 lõpp.add(mängunupp);
+                mängunupp.setI(mängunupp.getNuppuNumber());
+                if (mängunupp.isMängijaOma())
+                    mängunupp.setJ(6);
+                else
+                    mängunupp.setJ(1);
             }
             // Teepeal edasi
             else {
                 int i = tee.indexOf(mängunupp);
                 tee.set(i, null);
                 tee.set(i + silmadeArv, mängunupp);
+                // Teapealt edasi kõrvele äärde
+                if (mängunupp.getI()+silmadeArv > 7) {
+                    if (mängunupp.getI()+silmadeArv == 8)
+                        mängunupp.setI(7);
+                    else
+                        mängunupp.setI(8);
+
+                    if (mängunupp.isMängijaOma())
+                        mängunupp.setJ(4);
+                    else
+                        mängunupp.setJ(2);
+                }
+                else {
+                    mängunupp.setI(i + silmadeArv);
+                }
                 // Vastase nuppu hävitamine
                 if (vastaseTee.get(i + silmadeArv)!= null && i + silmadeArv > 3 && i + silmadeArv < 12) {
                     hävita(vastaseTee.get(i + silmadeArv));
@@ -140,10 +166,14 @@ public class Mängulaud extends BorderPane {
             eemalda = mängijaTee.indexOf(mängunupp);
             mängijaTee.set(eemalda, null);
             mängijaAlgus.add(mängunupp);
+            mängunupp.setI(mängunupp.getNuppuNumber());
+            mängunupp.setJ(5);
         } else {
             eemalda = arvutiTee.indexOf(mängunupp);
             arvutiTee.set(eemalda, null);
             arvutiAlgus.add(mängunupp);
+            mängunupp.setI(mängunupp.getNuppuNumber());
+            mängunupp.setJ(0);
         }
     }
 
