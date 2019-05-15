@@ -52,7 +52,6 @@ public class Graafika extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -188,6 +187,13 @@ public class Graafika extends Application {
                 if (mängulaud.võiduKontroll() != 0)
                     this.stop();
 
+                //Äkki saab niimoodi erinevat teksti väljastada?
+                TextField tekst = new TextField();
+                tekst.setAlignment(Pos.CENTER_RIGHT);
+                pane1.getChildren().addAll(tekst);
+                tekst.setText("Sinu käik");
+              
+  
                 // Veereta nuppu vajutus paneb tööle kasutaja ja arvuti loopid.
                 veeretaNupp.setOnMouseClicked(event -> {
                     veeretaNupp.setDisable(true);
@@ -195,6 +201,7 @@ public class Graafika extends Application {
                     //TODO: "Sinu käik" animation
                     int silmad = täring.veereta();
                     System.out.println(silmad);
+                    tekst.setText("Täring veeretas " + silmadeArv);
                     //TODO: "Täring" animation
 
                     //Kontroll(Mis nuppudega võib käia)
@@ -230,21 +237,26 @@ public class Graafika extends Application {
                     }
                     else {
                         //TODO: Jääd vahele animation / Veeretasid nulli
+                        tekst.setText("Jääd vahele!");
                         //Jääd vahele
+
                     }
 
 
 
 
                     //Boonus ruudu kontroll
+
                     /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
                        if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
                            //TODO: Boonusruudu animatsioon
+                           tekst.setText("Astusid boonusruudule!");  
                            continue;
                         }
                         else
                             break;
 */
+
 
                     //ARVUTI LOOP:
 
@@ -266,6 +278,7 @@ public class Graafika extends Application {
                     //TODO: "Täring" animation
 
                     if (silmadeArv == 0) {
+                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
@@ -273,6 +286,7 @@ public class Graafika extends Application {
                     //Kontroll(Mis nuppudega võib käia)
                     lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
                     if (lubatud.size() == 0) {
+                        tekst.setText("Arvuti jääb vahele!");
                         //TODO: Arvuti jääb vahele animatsioon
                         break;
                     }
@@ -295,6 +309,7 @@ public class Graafika extends Application {
                     //Boonus ruudu kontroll
                     liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
                     if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 || liigutatudNuppuAsukoht == 13) {
+                        tekst.setText("Astusid boonusruudule!");
                         //TODO: Boonusruudu animatsioon
                         continue;
                     } else
