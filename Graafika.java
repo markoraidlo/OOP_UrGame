@@ -244,6 +244,7 @@ public class Graafika extends Application {
                     liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
                     if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
                         //TODO: Boonusruudu animatsioon
+                        tekst.setText("Astusid boonusruudule!");
                         continue;
                     }
                     else
@@ -292,6 +293,7 @@ public class Graafika extends Application {
                     //Boonus ruudu kontroll
                     liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
                     if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 || liigutatudNuppuAsukoht == 13) {
+                        tekst.setText("Astusid boonusruudule!");
                         //TODO: Boonusruudu animatsioon
                         continue;
                     } else
