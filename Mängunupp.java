@@ -47,13 +47,4 @@ public class Mängunupp extends Circle{
     public void setJ(int j) {
         this.j = j;
     }
-
-    public int getNuppuNumber() {
-        return nuppuNumber;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(nuppuNumber);
-    }
 }
