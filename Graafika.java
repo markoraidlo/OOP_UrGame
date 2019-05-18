@@ -96,9 +96,22 @@ public class Graafika extends Application {
             peaLava.show();
         });
 
+        TextField nimi = new TextField();
+        nimi.setPromptText("Sisestage oma eesnimi: ");
+
+        try {
+            if (!nimi.getText().isEmpty()) {
+                nimi.getText();
+            }
+        }
+
+        catch (Exception e) {
+            System.out.println("Viga! Sa ei sisestanud oma eesnime!");
+        }
+
         FlowPane paneJälle = new FlowPane(10, 10);
         paneJälle.setAlignment(Pos.CENTER);
-        paneJälle.getChildren().addAll(alustaNupp);
+        paneJälle.getChildren().addAll(alustaNupp, nimi);
 
         VBox vBox = new VBox(10);
         vBox.setAlignment(Pos.CENTER);
