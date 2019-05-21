@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -87,6 +88,7 @@ public class Graafika extends Application {
         Text title = new Text();
         title.setText("Need inimesed tegid arvutile ära:");
         leaderBoard.getChildren().add(title);
+        //Kui faili ei ole, siis ei loe.
         try {
             List<String> leaderboard = loeFail("leaderboard.txt");
             for (String string : leaderboard) {
@@ -119,25 +121,28 @@ public class Graafika extends Application {
 
         //Alusta nupp
         Button alustaNupp = new Button("Alusta");
-        alustaNupp.setOnMouseEntered(event -> alustaNupp.setEffect(shadow));
-        alustaNupp.setOnMouseExited(event -> alustaNupp.setEffect(null));
-        alustaNupp.setOnAction(event -> {
-            esileht.hide();
-            peaLava.show();
-        });
 
         TextField nimi = new TextField();
         nimi.setPromptText("Sisestage oma eesnimi: ");
 
-        try {
-            if (!nimi.getText().isEmpty()) {
-                nimi.getText();
+        alustaNupp.setOnMouseEntered(event -> alustaNupp.setEffect(shadow));
+        alustaNupp.setOnMouseExited(event -> alustaNupp.setEffect(null));
+        alustaNupp.setOnAction(event -> {
+            if (nimi.getText().isEmpty()) {
+                new NoNameException();
             }
+                esileht.hide();
+                peaLava.show();
         }
+        );
 
-        catch (Exception e) {
-            System.out.println("Viga! Sa ei sisestanud oma eesnime!");
-        }
+
+
+
+
+
+
+
 
         FlowPane paneJälle = new FlowPane(10, 10);
         paneJälle.setAlignment(Pos.CENTER);
