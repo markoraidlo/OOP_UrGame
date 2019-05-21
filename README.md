@@ -1,5 +1,7 @@
 # OOP_UrGame
 
+# Mängu peab jooksutama gradle-is.
+
 # Ur mängu reeglid:
   Eesmärk on kõik nupud liigutada lõppu enne, kui seda teeb vastane.
   Mõlemal mängijal on 6 nuppu.
