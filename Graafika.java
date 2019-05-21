@@ -34,10 +34,8 @@ import java.util.List;
 
 
 
-//TODO: Programm peab töötlema nii hiire kui ka klaviatuuriga tekitatud sündmusi.
-//TODO: Programmi akna suurust muutes peab kuvatu mõistlikult muutuma.
-//TODO: Erinditöötluse abil tagada, et toimuks mõistlik reageerimine kasutaja ekslikele tegevustele .
-//TODO: Programm peab mingid andmed kirjutama faili ja neid failist ka lugema.
+//TODO: Erinditöötluse algul nime küsimesele
+//TODO: Failist lugemine
 
 
 
@@ -81,7 +79,7 @@ public class Graafika extends Application {
                 "Iga käigu alguses visatakse 4 täringut, millel kõigil on 50/50 võimalus tagastada 1 või 0 \n" +
                 "Mängija valib nupu, mida soovib liigutada ning liigutab seda vastav arvu ruute(0-4)\n" +
                 "Kui mängija nupule, mis asub mänguväljakul maandub peale vastase nupp, siis läheb nupp algusesse tagasi.\n" +
-                "Boonusruudud on tähistatud #-ga. Sellele maandudes mitte midagi ei juhtu. Kui su nupp on boonusruudul\n" +
+                "Boonusruudud on punased. Sellele maandudes mitte midagi ei juhtu. Kui su nupp on boonusruudul\n" +
                 ", siis on see kaitsud vaenlase rünnakute eest.\n" +
                 "Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa.");
         tekst.setStyle("-fx-font: 13 ariel;");
