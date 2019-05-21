@@ -2,6 +2,8 @@ package OOP_UrGame;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -49,7 +51,7 @@ public class Graafika extends Application {
     }
 
     //Lihtne failist lugemine
-    private static List<String> loeSeansid(String failinimi)throws Exception {
+    private static List<String> loeFail(String failinimi)throws Exception {
         List<String> tagastus = new ArrayList<>();
         try (InputStream baidid = new FileInputStream(failinimi);
              InputStreamReader tekst = new InputStreamReader(baidid, "UTF-8");
@@ -57,6 +59,7 @@ public class Graafika extends Application {
             String rida = puhver.readLine();
             while (rida != null) {
                 tagastus.add(rida);
+                rida = puhver.readLine();
             }
         }
         return tagastus;
@@ -77,6 +80,24 @@ public class Graafika extends Application {
         final String failiNimi = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd_MM_yyyy_HH_mm")) + ".txt";
         File logiFail = new File(failiNimi);
         logiFail.createNewFile();
+
+
+        //Loeb leaderboardi
+        VBox leaderBoard = new VBox();
+        Text title = new Text();
+        title.setText("Need inimesed tegid arvutile ära:");
+        leaderBoard.getChildren().add(title);
+        try {
+            List<String> leaderboard = loeFail("leaderboard.txt");
+            for (String string : leaderboard) {
+                Text text = new Text();
+                text.setText(string);
+                leaderBoard.getChildren().add(text);
+            }
+        }
+        catch (Exception exp) {
+            //Ei tee midagi kui faili ei leia
+        }
 
 
         //Algus ekraan:
@@ -124,7 +145,7 @@ public class Graafika extends Application {
 
         VBox vBox = new VBox(10);
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(label, tekst, paneJälle);
+        vBox.getChildren().addAll(label, tekst,leaderBoard, paneJälle);
 
         Scene stseen1 = new Scene(vBox);
         esileht.setScene(stseen1);
@@ -134,16 +155,17 @@ public class Graafika extends Application {
 
         //Mängulaua graafika
         GridPane lauaPane = new GridPane();
-        lauaPane.setMinSize(800,300);
         lauaPane.setPadding(new Insets(10, 10, 10, 10));
         lauaPane.setVgap(5);
         lauaPane.setHgap(5);
         lauaPane.setGridLinesVisible(true);
         //lauaPane.setAlignment(Pos.CENTER);
 
+        int x = 100;
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
-                Rectangle rectangle = new Rectangle(100,100);
+                Rectangle rectangle = new Rectangle(x,x);
                 // Algused
                 if (i<6 && (j < 2 || j > 4)) {
                     rectangle.setFill(Color.LIGHTGRAY);
@@ -195,7 +217,7 @@ public class Graafika extends Application {
 
         Scene stseen2 = new Scene(juur, 1080, 900);
         peaLava.setTitle("UR mäng");
-        peaLava.setResizable(false);
+        //peaLava.setResizable(false);
         peaLava.setScene(stseen2);
 
         //Äkki saab niimoodi erinevat teksti väljastada?
@@ -203,7 +225,6 @@ public class Graafika extends Application {
         tekstField.setAlignment(Pos.CENTER_RIGHT);
         pane1.getChildren().addAll(tekstField);
         tekstField.setText("Sinu käik");
-
 
 
 
