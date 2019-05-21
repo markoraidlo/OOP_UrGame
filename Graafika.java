@@ -31,8 +31,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+
 
 
 //TODO: Programm peab töötlema nii hiire kui ka klaviatuuriga tekitatud sündmusi.
@@ -82,7 +81,7 @@ public class Graafika extends Application {
                 "Iga käigu alguses visatakse 4 täringut, millel kõigil on 50/50 võimalus tagastada 1 või 0 \n" +
                 "Mängija valib nupu, mida soovib liigutada ning liigutab seda vastav arvu ruute(0-4)\n" +
                 "Kui mängija nupule, mis asub mänguväljakul maandub peale vastase nupp, siis läheb nupp algusesse tagasi.\n" +
-                "Boonusruudud on tähistatud #-ga. Sellele maandudes saab uuesti täringuid veeretada. Kui su nupp on boonusruudul\n" +
+                "Boonusruudud on tähistatud #-ga. Sellele maandudes mitte midagi ei juhtu. Kui su nupp on boonusruudul\n" +
                 ", siis on see kaitsud vaenlase rünnakute eest.\n" +
                 "Selleks, et mänguväljalt lahkuda, pead veeretama täpse arvu silmasid, kui veeretasid rohkem, siis käia ei saa.");
         tekst.setStyle("-fx-font: 13 ariel;");
@@ -183,7 +182,9 @@ public class Graafika extends Application {
         tekstField.setText("Sinu käik");
 
 
-        // Game loop
+
+
+        //Game loop
         new AnimationTimer() {
             @Override public void handle(long currentNanoTime) {
                 //Objektide loomine.
@@ -199,16 +200,14 @@ public class Graafika extends Application {
                 veeretaNupp.setOnMouseClicked(event -> {
                     veeretaNupp.setDisable(true);
 
-                    //TODO: "Sinu käik" animation
+
                     int silmad = täring.veereta();
                     System.out.println(silmad);
                     tekstField.setText("Täring veeretas " + silmad);
-                    //TODO: "Täring" animation
 
-                    //Kontroll(Mis nuppudega võib käia)
+
+                    //Kontroll
                     List<Mängunupp> lubatudList  = mängulaud.kontroll(silmad, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
-
-
 
                     if (silmad != 0 && lubatudList.size() != 0) {
                         for (Mängunupp mängunupp : mängulaud.getMängijaNuppud()) {
@@ -232,77 +231,68 @@ public class Graafika extends Application {
                                         System.out.println(ex.getMessage());
                                     }
 
+                                    for (Mängunupp mängunupp1 : mängulaud.getMängijaNuppud()) {
+                                        mängunupp1.setOnMouseClicked(null);
+                                    }
+
+                                    int silmadArvuti = täring.veereta();
+                                    tekstField.setText("Arvuti! Täring =" + silmadArvuti);
+
+                                    List<Mängunupp> lubatudListArvuti  = mängulaud.kontroll(silmadArvuti, mängulaud.getArvutiAlgus(), mängulaud.getArvutiTee(), mängulaud.getMängijaTee());
+                                    Mängunupp arvutiKäik = arvuti.suvalineKäik(lubatudListArvuti);
+
+                                    mängulaud.liiguta(arvutiKäik, silmadArvuti);
+                                    mängulaud.väljastaLaud();
+                                    lauaPane.getChildren().removeAll(mängulaud.getMängijaNuppud());
+                                    lauaPane.getChildren().removeAll(mängulaud.getArvutiNuppud());
+                                    for (Mängunupp nupp : mängulaud.getArvutiNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                                    }
+                                    for (Mängunupp nupp : mängulaud.getMängijaNuppud()) {
+                                        lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                                    }
+
+                                    //Logi
+                                    try {
+                                        Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
+                                    } catch (Exception ex) {
+                                        System.out.println(ex.getMessage());
+                                    }
                                 }
                             });
                         }
                     }
                     else {
-                        //TODO: Jääd vahele animation / Veeretasid nulli
                         tekstField.setText("Jääd vahele!");
                         //Jääd vahele
-                    }
+                        int silmadArvuti = täring.veereta();
+                        tekstField.setText("Arvuti! Täring =" + silmadArvuti);
 
+                        List<Mängunupp> lubatudListArvuti  = mängulaud.kontroll(silmadArvuti, mängulaud.getArvutiAlgus(), mängulaud.getArvutiTee(), mängulaud.getMängijaTee());
+                        Mängunupp arvutiKäik = arvuti.suvalineKäik(lubatudListArvuti);
 
-
-
-                    //Boonus ruudu kontroll
-                    /*liigutatudNuppuAsukoht = mängulaud.getMängijaTee().indexOf(mängulaud.getMängijaNuppud().get(sisend - 1));
-                       if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 ||liigutatudNuppuAsukoht == 13) {
-                           //TODO: Boonusruudu animatsioon
-                           tekstField.setText("Astusid boonusruudule!");
-                           continue;
+                        mängulaud.liiguta(arvutiKäik, silmadArvuti);
+                        mängulaud.väljastaLaud();
+                        lauaPane.getChildren().removeAll(mängulaud.getMängijaNuppud());
+                        lauaPane.getChildren().removeAll(mängulaud.getArvutiNuppud());
+                        for (Mängunupp nupp : mängulaud.getArvutiNuppud()) {
+                            lauaPane.add(nupp, nupp.getI(), nupp.getJ());
                         }
-                        else
-                            break;
-*/
+                        for (Mängunupp nupp : mängulaud.getMängijaNuppud()) {
+                            lauaPane.add(nupp, nupp.getI(), nupp.getJ());
+                        }
 
-                    //ARVUTI LOOP:
-
-                    //Un disable loop
-/*
-                    while (true){
+                        //Logi
+                        try {
+                            Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
+                        } catch (Exception ex) {
+                            System.out.println(ex.getMessage());
+                        }
                     }
-                    */
+
+
                     veeretaNupp.setDisable(false);
                 });
-
-
-                //ARVUTI LOOP:
-                /*
-                //TODO: "Vastase käik" animation
-                while (true) {
-                    silmadeArv = täring.veereta();
-                    //TODO: "Täring" animation
-                    if (silmadeArv == 0) {
-                        //TODO: Arvuti jääb vahele animatsioon
-                        break;
-                    }
-                    //Kontroll(Mis nuppudega võib käia)
-                    lubatud = mängulaud.kontroll(silmadeArv, mängulaud.getMängijaAlgus(), mängulaud.getMängijaTee(), mängulaud.getArvutiTee());
-                    if (lubatud.size() == 0) {
-                        //TODO: Arvuti jääb vahele animatsioon
-                        break;
-                    }
-                    Mängunupp arvutiKäik = arvuti.suvalineKäik(lubatud);
-                    mängulaud.liiguta(arvutiKäik, silmadeArv);
-                    //TODO: Arvuti käik
-                    //TODO: Laua animatsioon.
-                    mängulaud.väljastaLaud();
-                    //Logi
-                    try {
-                        Graafika.fileWriter(mängulaud.tagastaLaud(), failiNimi);
-                    }
-                    catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    //Boonus ruudu kontroll
-                    liigutatudNuppuAsukoht = mängulaud.getArvutiTee().indexOf(arvutiKäik);
-                    if (liigutatudNuppuAsukoht == 3 || liigutatudNuppuAsukoht == 7 || liigutatudNuppuAsukoht == 13) {
-                        //TODO: Boonusruudu animatsioon
-                        continue;
-                    } else
-                        break;
-                } */
             }
         }.start();
 
@@ -366,7 +356,6 @@ public class Graafika extends Application {
                 });
 
                 // nuppude grupeerimine
-                //TODO: See dublicate ära lahendada
                 FlowPane pane = new FlowPane(10, 10);
                 pane.setAlignment(Pos.CENTER);
                 pane.getChildren().addAll(okButton, cancelButton);

@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static java.time.format.DateTimeFormatter.*;
 
-//TODO: Kui Graafika klass valmis ja tõõtab siis võib UurMäng.java ära kustutada.
+// Esimese osa põhiklass, teises osas pole vaja.
 
 public class UurMäng {
 

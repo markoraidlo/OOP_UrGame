@@ -136,20 +136,30 @@ public class Mängulaud  {
                 int i = tee.indexOf(mängunupp);
                 tee.set(i, null);
                 tee.set(i + silmadeArv, mängunupp);
-                // Teapealt edasi kõrvele äärde
-                if (mängunupp.getI()+silmadeArv > 7) {
-                    if (mängunupp.getI()+silmadeArv == 8)
-                        mängunupp.setI(7);
-                    else
-                        mängunupp.setI(8);
 
-                    if (mängunupp.isMängijaOma())
-                        mängunupp.setJ(4);
-                    else
-                        mängunupp.setJ(2);
+                if (i < 4) {
+                    if (i + silmadeArv > 3) {
+                        mängunupp.setI(i + silmadeArv - 4);
+                        mängunupp.setJ(3);
+                    }
+                    else {
+                        mängunupp.setI(mängunupp.getI()-silmadeArv);
+                    }
                 }
                 else {
-                    mängunupp.setI(i + silmadeArv);
+                    if (mängunupp.getI() + silmadeArv > 7) {
+                        if (mängunupp.getI() + silmadeArv == 8)
+                            mängunupp.setI(6);
+                        else
+                            mängunupp.setI(7);
+
+                        if (mängunupp.isMängijaOma())
+                            mängunupp.setJ(4);
+                        else
+                            mängunupp.setJ(2);
+                    } else {
+                        mängunupp.setI(mängunupp.getI() + silmadeArv);
+                    }
                 }
                 // Vastase nuppu hävitamine
                 if (vastaseTee.get(i + silmadeArv)!= null && i + silmadeArv > 3 && i + silmadeArv < 12) {
@@ -166,13 +176,13 @@ public class Mängulaud  {
             eemalda = mängijaTee.indexOf(mängunupp);
             mängijaTee.set(eemalda, null);
             mängijaAlgus.add(mängunupp);
-            mängunupp.setI(mängunupp.getNuppuNumber());
+            mängunupp.setI(mängunupp.getNuppuNumber()-1);
             mängunupp.setJ(5);
         } else {
             eemalda = arvutiTee.indexOf(mängunupp);
             arvutiTee.set(eemalda, null);
             arvutiAlgus.add(mängunupp);
-            mängunupp.setI(mängunupp.getNuppuNumber());
+            mängunupp.setI(mängunupp.getNuppuNumber()-1);
             mängunupp.setJ(0);
         }
     }
@@ -180,7 +190,11 @@ public class Mängulaud  {
     // Iga käigu alguses kontrollib kas igat nuppu saab liigutada.
     // Algne variant, vajab veel lõppu kontrolli, boonus ruudu kontrolli.
     public List<Mängunupp> kontroll(int silmadeArv,List<Mängunupp> kontrolli1,List<Mängunupp> kontrolli2,List<Mängunupp> vastane) {
+
         List<Mängunupp> lubatudNuppud = new ArrayList<>();
+
+        if (silmadeArv == 0)
+            return lubatudNuppud;
 
         //Kontrollib nuppud kas on tühi ruut või et ei ole enda oma
         for (Mängunupp mängunupp : kontrolli1) {
