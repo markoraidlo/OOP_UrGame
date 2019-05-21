@@ -24,9 +24,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.w3c.dom.Node;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -48,6 +46,20 @@ public class Graafika extends Application {
             puhverVälja.write(rida);
             puhverVälja.newLine();
         }
+    }
+
+    //Lihtne failist lugemine
+    private static List<String> loeSeansid(String failinimi)throws Exception {
+        List<String> tagastus = new ArrayList<>();
+        try (InputStream baidid = new FileInputStream(failinimi);
+             InputStreamReader tekst = new InputStreamReader(baidid, "UTF-8");
+             BufferedReader puhver = new BufferedReader(tekst)) {
+            String rida = puhver.readLine();
+            while (rida != null) {
+                tagastus.add(rida);
+            }
+        }
+        return tagastus;
     }
 
 
